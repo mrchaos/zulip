@@ -1,7 +1,7 @@
 import $ from "jquery";
 import _ from "lodash";
 
-import pygments_data from "../generated/pygments_data.json";
+// import pygments_data from "../generated/pygments_data.json";
 import * as typeahead from "../shared/js/typeahead";
 
 import * as compose from "./compose";

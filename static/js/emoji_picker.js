@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-import emoji_codes from "../generated/emoji/emoji_codes.json";
+// import emoji_codes from "../generated/emoji/emoji_codes.json";
 import * as typeahead from "../shared/js/typeahead";
 import render_emoji_popover from "../templates/emoji_popover.hbs";
 import render_emoji_popover_content from "../templates/emoji_popover_content.hbs";

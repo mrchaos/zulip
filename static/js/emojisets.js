@@ -2,18 +2,23 @@ import google_blob_sheet from "emoji-datasource-google-blob/img/google/sheets-25
 import google_sheet from "emoji-datasource-google/img/google/sheets-256/64.png";
 import twitter_sheet from "emoji-datasource-twitter/img/twitter/sheets-256/64.png";
 
-import octopus_url from "../generated/emoji/images-google-64/1f419.png";
+// import octopus_url from "../generated/emoji/images-google-64/1f419.png";
 
 import {user_settings} from "./user_settings";
 
-import google_blob_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/google-blob-sprite.css";
-import google_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/google-sprite.css";
-import twitter_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/twitter-sprite.css";
+// import google_blob_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/google-blob-sprite.css";
+// import google_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/google-sprite.css";
+// import twitter_css from "!style-loader?injectType=lazyStyleTag!css-loader!../generated/emoji-styles/twitter-sprite.css";
 
+// const emojisets = new Map([
+//     ["google", {css: google_css, sheet: google_sheet}],
+//     ["google-blob", {css: google_blob_css, sheet: google_blob_sheet}],
+//     ["twitter", {css: twitter_css, sheet: twitter_sheet}],
+// ]);
 const emojisets = new Map([
-    ["google", {css: google_css, sheet: google_sheet}],
-    ["google-blob", {css: google_blob_css, sheet: google_blob_sheet}],
-    ["twitter", {css: twitter_css, sheet: twitter_sheet}],
+    ["google", {sheet: google_sheet}],
+    ["google-blob", { sheet: google_blob_sheet}],
+    ["twitter", {sheet: twitter_sheet}],
 ]);
 
 // For `text` emoji set we fallback to `google` emoji set

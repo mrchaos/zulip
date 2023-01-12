@@ -376,3 +376,5 @@ run_test("topic links ordering by priority", () => {
         },
     ]);
 });
+
+run_test();

@@ -217,7 +217,7 @@ run_test("insert_local_message streams", ({override, override_rewire}) => {
     let add_topic_links_called = false;
     let insert_message_called = false;
 
-    override(markdown, "apply_markdown", () => {
+    override(markdown, "", () => {
         apply_markdown_called = true;
     });
 

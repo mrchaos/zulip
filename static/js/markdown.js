@@ -5,6 +5,7 @@ import _ from "lodash";
 import * as fenced_code from "../shared/js/fenced_code";
 import marked from "../third/marked/lib/marked";
 
+
 // This contains zulip's frontend Markdown implementation; see
 // docs/subsystems/markdown.md for docs on our Markdown syntax.  The other
 // main piece in rendering Markdown client-side is
@@ -664,4 +665,89 @@ export function parse_non_message(raw_content) {
     // raw_content exactly as if it were a Zulip message, so we will
     // handle things like mentions, stream links, and linkifiers.
     return parse({raw_content, helper_config: web_app_helpers}).content;
+}
+
+// eslint-disable-next-line no-unused-vars
+function parse_with_options2({raw_content, options}) {
+
+    const marked_options = {
+        ...options,
+    };
+
+    // Our Python-Markdown processor appends two \n\n to input
+    // const content = marked.parse(raw_content + "\n\n", marked_options).trim();
+    // const content = marked.parse(raw_content + "\n\n",marked_options);
+    const content = marked.parse(raw_content + "\n\n",marked_options).trim();
+
+    return content;
+}
+
+export function parse2(raw_content) {
+       
+    function disable_markdown_regex(rules, name) {
+        rules[name] = {
+            exec() {
+                return false;
+            },
+        };
+    }
+
+    // Configure the marked Markdown parser for our usage
+    const renderer = new marked.Renderer();
+
+    // No <code> around our code blocks instead a codehilite <div> and disable
+    // class-specific highlighting.
+    renderer.code = (code) => fenced_code.wrap_code(code) + "\n\n";
+
+    // Prohibit empty links for some reason.
+    const old_link = renderer.link;
+    renderer.link = (href, title, text) =>
+        old_link.call(renderer, href, title, text.trim() ? text : href);
+
+    // Put a newline after a <br> in the generated HTML to match Markdown
+    renderer.br = function () {
+        return "<br>\n";
+    };
+
+    function preprocess_code_blocks(src) {
+        return fenced_code.process_fenced_code(src);
+    }
+    // Disable headings
+    // We only keep the # Heading format.
+    disable_markdown_regex(marked.Lexer.rules.tables, "lheading");
+
+    // Disable __strong__ (keeping **strong**)
+    marked.InlineLexer.rules.zulip.strong = /^\*\*([\S\s]+?)\*\*(?!\*)/;
+
+    // Make sure <del> syntax matches the backend processor
+    marked.InlineLexer.rules.zulip.del = /^(?!<~)~~([^~]+)~~(?!~)/;
+
+    // Disable _emphasis_ (keeping *emphasis*)
+    // Text inside ** must start and end with a word character
+    // to prevent mis-parsing things like "char **x = (char **)y"
+    marked.InlineLexer.rules.zulip.em = /^\*(?!\s+)((?:\*\*|[\S\s])+?)(\S)\*(?!\*)/;
+
+    // Disable autolink as (a) it is not used in our backend and (b) it interferes with @mentions
+    disable_markdown_regex(marked.InlineLexer.rules.zulip, "autolink");
+
+    // Tell our fenced code preprocessor how to insert arbitrary
+    // HTML into the output. This generated HTML is safe to not escape
+    fenced_code.set_stash_func((html) => marked.stashHtml(html, true));
+
+    const options = {
+        texHandler: handleTex,  
+        timestampHandler: handleTimestamp,
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: false,
+        sanitize: true,
+        smartLists: true,
+        smartypants: false,
+        zulip: true,
+        renderer,
+        preprocessors: [preprocess_code_blocks],
+    };
+
+    return parse_with_options2({raw_content, options});
 }

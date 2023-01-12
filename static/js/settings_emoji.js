@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import $ from "jquery";
 
-import emoji_codes from "../generated/emoji/emoji_codes.json";
+// import emoji_codes from "../generated/emoji/emoji_codes.json";
 import render_confirm_deactivate_custom_emoji from "../templates/confirm_dialog/confirm_deactivate_custom_emoji.hbs";
 import emoji_settings_warning_modal from "../templates/confirm_dialog/confirm_emoji_settings_warning.hbs";
 import render_admin_emoji_list from "../templates/settings/admin_emoji_list.hbs";
@@ -70,7 +71,7 @@ function sort_author_full_name(a, b) {
 }
 
 function is_default_emoji(emoji_name) {
-    return emoji_codes.names.includes(emoji_name);
+    // return emoji_codes.names.includes(emoji_name);
 }
 
 function is_custom_emoji(emoji_name) {

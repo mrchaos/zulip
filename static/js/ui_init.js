@@ -1,8 +1,8 @@
 import $ from "jquery";
 import _ from "lodash";
 
-import generated_emoji_codes from "../generated/emoji/emoji_codes.json";
-import generated_pygments_data from "../generated/pygments_data.json";
+// import generated_emoji_codes from "../generated/emoji/emoji_codes.json";
+// import generated_pygments_data from "../generated/pygments_data.json";
 import * as fenced_code from "../shared/js/fenced_code";
 import render_compose from "../templates/compose.hbs";
 import render_edit_content_button from "../templates/edit_content_button.hbs";
