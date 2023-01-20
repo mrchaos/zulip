@@ -1,0 +1,3211 @@
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./static/styles/components.css ***!
+  \**********************************************************************************************************************************************************************************/
+/* Reusable, object-oriented CSS base components for all Zulip pages
+   (both web app and portico). */
+
+.new-style label.checkbox {
+        padding: 0;
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+    }
+
+.new-style label.checkbox input[type="checkbox"] {
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+
+.new-style label.checkbox input[type="checkbox"] ~ span {
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+                top: -2px;
+
+                padding: 2px;
+                margin: 0 5px 0 0;
+                height: 10px;
+                width: 10px;
+
+                font-weight: 300;
+                line-height: 0.8;
+                font-size: 1.3rem;
+                text-align: center;
+                border: 1px solid hsla(0, 0%, 0%, 0.6);
+
+                border-radius: 4px;
+                filter: brightness(0.8);
+
+                cursor: pointer;
+            }
+
+.new-style label.checkbox input[type="checkbox"]:checked ~ span {
+                background-image: url(5cc8e6c419aa3d443e73.svg);
+                background-size: 85%;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+            }
+
+.new-style label.checkbox input[type="checkbox"]:disabled ~ span {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+.new-style a.no-style {
+        color: inherit;
+    }
+
+a.no-underline,
+a.no-underline:hover {
+    text-decoration: none;
+}
+
+.half-opacity {
+    opacity: 0.5;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.simplebar-track .simplebar-scrollbar::before {
+        background-color: hsl(0, 0%, 0%);
+        box-shadow: 0 0 0 1px hsla(0, 0%, 100%, 0.33);
+    }
+
+.simplebar-track.simplebar-vertical {
+        transition: width 0.2s ease 1s;
+    }
+
+.simplebar-track.simplebar-vertical.simplebar-hover {
+            width: 15px;
+            transition: width 0.2s ease;
+        }
+
+.simplebar-track.simplebar-horizontal {
+        transition: height 0.2s ease 1s;
+    }
+
+.simplebar-track.simplebar-horizontal.simplebar-hover {
+            height: 15px;
+            transition: height 0.2s ease;
+        }
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+            transition: height 0.2s ease 1s;
+        }
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar.simplebar-hover {
+                height: 11px;
+                transition: height 0.2s ease;
+            }
+
+i.zulip-icon.zulip-icon-bot {
+    color: hsl(180, 5%, 74%);
+    vertical-align: top;
+    padding: 0 2px;
+}
+
+.tippy-content {
+    /* This actually sets the
+     * default font size of only
+     * tooltips; popovers should define
+     * font-size of their own.
+     */
+    font-size: 12px;
+}
+
+/* Hide the somewhat buggy browser show password feature in IE, Edge,
+   since it duplicates our own "show password" widget. */
+input::-ms-reveal {
+    display: none;
+}
+
+.password-div {
+    position: relative;
+}
+
+.password-div .password_visibility_toggle {
+        position: absolute;
+        right: 10px;
+        top: 42px;
+        opacity: 0.6;
+    }
+
+.password-div .password_visibility_toggle:hover {
+            opacity: 1;
+        }
+
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./static/styles/portico/portico.css ***!
+  \***************************************************************************************************************************************************************************************/
+body {
+    background-color: hsl(0, 0%, 98%);
+    font-family: "Source Sans 3", sans-serif;
+    line-height: 150%;
+    height: 100%;
+    font-weight: 300;
+    font-size: 17px;
+}
+
+html {
+    height: 100%;
+}
+
+.noscroll {
+    overflow: hidden;
+    position: fixed;
+}
+
+.digest-address-link {
+    margin-top: 10px;
+    color: hsl(0, 0%, 60%);
+    font-size: 12px;
+    text-align: center;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.header {
+    position: relative;
+
+    padding: 15px 0;
+    height: 29px;
+
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.1);
+
+    z-index: 100;
+}
+
+.navbar.footer .nav > li {
+        line-height: 56px;
+    }
+
+.navbar.footer .nav > li > a {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+.push {
+    height: 56px;
+}
+
+/* The API tabbed content tends to have a lot of code blocks,
+   which look nicer against a different background */
+.api-center .code-section .blocks {
+        background-color: hsl(0, 0%, 98%);
+    }
+.api-center .code-section ul.nav li.active {
+            background-color: hsl(0, 0%, 98%);
+            border-bottom: 1px solid hsl(0, 0%, 98%);
+        }
+
+/* The Help Center tabbed content tends to be a lot short sentences.
+   We also want the Help Center tabbed content to pop more. */
+.help-center .code-section .blocks {
+    max-width: 500px;
+}
+
+.digest-container {
+    padding-top: 100px;
+}
+
+.digest-email-container {
+    display: block;
+    margin: 0 auto !important;
+    max-width: 700px;
+    padding-bottom: 30px;
+}
+
+.digest-email-html {
+    padding: 20px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+}
+
+.app.help {
+    display: inline-flex;
+
+    box-shadow: 0 -20px 50px hsla(0, 0%, 0%, 0.04);
+    overflow: auto;
+
+    color: hsl(0, 0%, 27%);
+}
+
+.app.help .hamburger {
+        display: none;
+    }
+
+.help .app-main {
+        padding: 0;
+        margin-top: 59px;
+    }
+
+/* Markdown processor generates lots of spurious <p></p> */
+
+.help p:empty {
+        margin: 0;
+    }
+
+.help .sidebar {
+        width: 300px;
+        z-index: 1;
+        /* 100vh - navbar - paddingTop - paddingBottom - bottomNav */
+        height: calc(100vh - 59px);
+
+        border-right: 1px solid hsl(219, 10%, 97%);
+        overflow: auto;
+
+        background-color: hsl(153, 32%, 55%);
+        color: hsl(0, 0%, 100%);
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+.help .sidebar .content {
+            padding: 10px 20px;
+        }
+
+.help .sidebar h1 {
+            font-weight: 400;
+            font-size: 1.25em;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+.help .sidebar h1.home-link {
+                font-size: 1em;
+                margin-top: 20px;
+                margin-bottom: 17px;
+            }
+
+.help .sidebar h1.home-link a::before {
+                    display: inline-block;
+                    font: normal normal normal 14px/1 FontAwesome;
+                    font-size: inherit;
+
+                    content: "\f0d9";
+                    margin-right: 10px;
+                }
+
+.help .sidebar h1:not(:first-of-type), .help .sidebar h2:not(:first-of-type), .help .sidebar h3:not(:first-of-type) {
+                margin-top: 0;
+            }
+
+.help .sidebar h1 a, .help .sidebar h2 a, .help .sidebar h3 a {
+                color: inherit;
+                display: block;
+            }
+
+.help .sidebar h2 {
+            font-weight: 400;
+            font-size: 1.1em;
+            line-height: 1.05;
+            margin-bottom: 5px;
+        }
+
+.help .sidebar.slide h2 {
+            cursor: pointer;
+        }
+
+.help .sidebar.slide h2::before {
+                display: block;
+                font: normal normal normal 14px/1 FontAwesome;
+                font-size: inherit;
+
+                content: "\f107";
+                margin-right: 5px;
+                float: right;
+
+                opacity: 0.5;
+            }
+
+.help .sidebar ul {
+            margin: 5px 0 10px 12px;
+        }
+
+.help .sidebar.slide ul {
+            margin-left: 19px;
+            display: none;
+        }
+
+.help .sidebar li {
+            list-style-type: none;
+            font-size: 0.95em;
+            font-weight: 400;
+            line-height: 1.7;
+
+            cursor: pointer;
+        }
+
+.help .sidebar li a {
+                color: inherit;
+                display: block;
+            }
+
+.help .sidebar a.highlighted {
+                background-color: hsl(152, 40%, 42%);
+
+                /* Extend highlight to entire width of sidebar, not just link area */
+                /* This has been changed from "+" to "- -" because of issue #8403.
+                   If the issue has been fixed, please change this back to "+" again. */
+                width: calc(100% + 20px);
+                margin-left: -40px;
+                padding-left: 40px;
+
+                /* Don't show the focus outline for the highlighted page. */
+                outline: 0;
+            }
+
+.help .markdown {
+    background-color: hsl(0, 0%, 100%);
+    width: calc(100vw - 300px);
+    height: calc(100vh - 59px);
+}
+
+.help-center ol,
+.portico-landing.integrations ol {
+    margin-left: 0;
+}
+
+.title {
+    font-family: Helvetica, sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.digest-page-title {
+    text-align: center;
+    font-weight: 400;
+}
+
+.thanks-page div {
+    text-align: center;
+}
+
+.lead {
+    font-weight: bold;
+}
+
+.pitch {
+    width: 600px;
+    max-width: 100%;
+}
+
+.help-inline {
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.help-inline.text-error {
+        color: hsl(1.1, 44.7%, 50.4%);
+    }
+
+a.title {
+    color: hsl(0, 0%, 0%);
+}
+
+a.title:hover {
+        color: hsl(0, 0%, 50%);
+        text-decoration: none;
+    }
+
+.fakecontrol {
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+img.screenshot {
+    /* This makes it so screenshots are still shown
+    even if they are larger than their span. */
+    max-width: 100%;
+}
+
+#pw_strength {
+    /* Same width as a Bootstrap default text <input> with padding */
+    width: 220px;
+    height: 8px;
+}
+
+#registration #pw_strength {
+    width: 325px;
+    margin: 7px auto 0;
+}
+
+.def::before {
+    content: " - ";
+}
+
+.landing-page {
+    padding: 2em 0;
+}
+
+.landing-page h2,
+    .landing-page h4 {
+        font-weight: lighter;
+    }
+
+.landing-page p {
+        font-size: 120%;
+    }
+
+.platform-icon {
+    width: 33%;
+}
+
+.portico-page h1 {
+    font-weight: 300;
+}
+
+label.text-error {
+    display: inline;
+
+    padding-left: 5px;
+}
+
+input.text-error {
+    border-color: hsl(0, 100%, 50%);
+    outline-color: hsl(0, 100%, 50%);
+}
+
+.portico-container {
+    position: relative;
+    /* To adjust for flexible footer height we do 2 things:
+      - Make the `portico-container` expand to full page height.
+      - Fill the empty space with `portico-wrap`. */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.portico-container .portico-wrap {
+        flex: 1 0 auto;
+    }
+
+.portico-container .footer {
+        flex-shrink: 0;
+    }
+
+.portico-container .if-zulip-electron {
+        display: none;
+    }
+
+/* detect if the platform is `ZulipDesktop` and if so, hide this tag! */
+.portico-container[data-platform="ZulipElectron"] .if-zulip-electron {
+    display: block;
+}
+
+/* -- new footer -- */
+.footer {
+    margin: 0;
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    background-color: hsl(33, 34%, 96%);
+    display: grid;
+    grid-template-columns: repeat(4, -webkit-max-content);
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.footer a {
+        color: inherit !important;
+    }
+.footer .footer-section {
+        margin: 0 20px;
+        vertical-align: top;
+        text-align: left;
+        /* 20-22vw for fitting content in the 4 column grid layout. We
+           need to set max-width so to avoid content overflow in different
+           languagues on different widths. */
+        max-width: 21vw;
+    }
+@media (max-width: 1199.98px) {
+            .footer .footer-section ul li {
+                text-indent: -5px;
+                padding-left: 5px;
+            }
+        }
+.footer .footer-section h3 {
+            text-transform: uppercase;
+            font-size: 1em;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+.footer .footer-section ul {
+            color: hsl(0, 0%, 40%);
+            list-style-type: none;
+            margin-left: 0;
+            font-weight: 400;
+        }
+.footer .footer-section .coloured-text {
+            color: hsl(0, 0%, 20%);
+            font-weight: bold;
+        }
+
+.self-hosted-footer {
+    padding: 20px 0 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.self-hosted-footer .break {
+        flex-basis: 100%;
+        height: 0;
+    }
+
+.self-hosted-footer .powered-by-zulip {
+        padding: 0;
+        padding-top: 10px;
+        opacity: 0.9;
+        font-size: 15px;
+    }
+
+.self-hosted-footer .footer-section {
+        padding-bottom: 5px;
+        margin: 0 15px;
+    }
+
+.self-hosted-footer .footer-section ul {
+        margin: 0;
+    }
+
+@media (max-width: 500px) {
+
+.self-hosted-footer {
+        flex-direction: column
+}
+    }
+
+/* -- end new footer -- */
+
+.header-main .logo {
+        display: block;
+        text-decoration: none;
+        position: relative;
+        line-height: 0.8;
+    }
+
+.header-main .logo svg {
+            vertical-align: -5px;
+        }
+
+.header-main .logo a,
+        .header-main .logo a:focus,
+        .header-main .logo a:hover {
+            text-decoration: none;
+            color: hsl(0, 0%, 20%);
+        }
+
+.header-main .logo .light {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: hsl(0, 0%, 20%);
+            opacity: 0.7;
+        }
+
+.header-main .portico-logo {
+        height: 28px;
+        width: auto;
+        padding: 6px 0;
+    }
+
+.portico-header .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+.portico-header .dropdown ul {
+            display: none;
+            position: absolute;
+            right: 0;
+            margin: 10px 0 0;
+            list-style-type: none;
+            width: -webkit-fit-content;
+            width: -moz-fit-content;
+            width: fit-content;
+            background-color: hsl(0, 0%, 100%);
+            padding: 5px 0;
+            border-radius: 4px;
+            border: 1px solid hsl(0, 0%, 87%);
+            box-shadow: 0 2px 5px hsla(0, 0%, 0%, 0.1);
+        }
+
+.portico-header .dropdown ul::before {
+                content: "\25B2";
+                position: absolute;
+                top: -4px;
+                right: 9px;
+                font-size: 0.5em;
+                color: hsl(0, 0%, 87%);
+                line-height: 0;
+                transform: scale(1.8, 1);
+            }
+
+.portico-header .dropdown ul li {
+                display: list-item;
+                margin: 0;
+                padding: 3px 10px;
+                text-align: left;
+                opacity: 1;
+                cursor: pointer;
+            }
+
+.portico-header .dropdown ul li:hover {
+                    background-color: hsl(190, 10%, 90%);
+                    transition: none;
+                }
+
+.portico-header .dropdown ul li a {
+                    display: block;
+                    margin: 2px 0;
+                    padding: 0;
+                    transition: none;
+                    font-size: 0.9em;
+                    font-weight: 400;
+                    color: hsl(0, 0%, 27%);
+                }
+
+.portico-header .dropdown ul li:hover a {
+                    background-color: transparent;
+                }
+
+.portico-header .dropdown ul li a i {
+                    margin-right: 5px;
+                }
+
+.portico-header .dropdown ul li.nav-header {
+                    background-color: transparent;
+                    cursor: default;
+                    font-size: 14px;
+                }
+
+.portico-header .dropdown ul.dropdown-list {
+                margin-top: 3px;
+                margin-right: 3px;
+            }
+
+.portico-header .dropdown.show ul {
+            display: block;
+        }
+
+.portico-header .dropdown-pill {
+        border: 1px solid hsla(0, 0%, 0%, 0.2);
+        border-radius: 4px;
+        margin-left: 10px;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+.portico-header .dropdown-pill .realm-name {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 5px 0 -4px;
+            padding: 1px 0 1px 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+.portico-header .dropdown-pill .realm-name i.fa {
+            position: relative;
+            top: -2px;
+            font-size: 0.6em;
+            margin-left: 5px;
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+
+.portico-header .dropdown-pill:hover .realm-name i.fa {
+            opacity: 1;
+        }
+
+.portico-header .dropdown-pill .header-realm-icon {
+            width: 26px;
+            height: 26px;
+            vertical-align: top;
+            border-radius: 4px;
+        }
+
+.portico-page-container .portico-header .dropdown-pill .realm-name {
+    margin-left: -3px;
+}
+
+.app {
+    width: 100%;
+    z-index: 99;
+}
+
+.devlogin_subheader {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table.table-striped {
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.1);
+}
+
+.team-profiles {
+    /* Compensate for gutter width */
+    margin: -10px;
+    margin-bottom: 3px;
+}
+
+.team .profile .profile-name {
+            font-weight: 600;
+        }
+
+.team .profile .profile-role {
+            opacity: 0.5;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            font-weight: 400;
+        }
+
+.team .bdfl {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+.team .bdfl .profile-picture {
+            flex: 0 auto;
+            width: 200px;
+            margin: 10px;
+        }
+
+.team .bdfl .profile-picture > img {
+                height: auto;
+                border-radius: 5px;
+            }
+
+.team .bdfl .profile-information {
+            flex: 1;
+            /* Wrap when screen is small to prevent very short line */
+            min-width: 300px;
+            font-size: 1.4em;
+            margin: 10px 10px 0;
+        }
+
+.team .bdfl .profile-description {
+            margin-top: 5px;
+            font-weight: 400;
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+.team .bdfl .profile-description p {
+                /* Avoid double-applying the 1.2em font-size here */
+                font-size: 1em;
+            }
+
+.team input {
+        display: none;
+    }
+
+.team input:checked + label {
+            border: 1px solid hsl(0, 0%, 93%);
+            border-top: 2px solid hsl(80, 61%, 50%);
+            border-bottom-color: hsl(0, 0%, 100%);
+        }
+
+.team label {
+        font-size: initial;
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid transparent;
+        margin: 0 0 -1px;
+    }
+
+.team label:hover {
+            cursor: pointer;
+        }
+
+.contributors-list {
+    margin-left: -40px;
+    width: calc(100% + 80px);
+}
+
+.contributors {
+    display: none;
+}
+
+.contributors .person {
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid hsl(0, 0%, 93%);
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+.contributors .person a {
+            color: inherit;
+        }
+
+.contributors .person:hover {
+            border: 1px solid hsl(0, 0%, 73%);
+        }
+
+.contributors .person .avatar {
+            width: 60px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+.contributors .person .info {
+            width: 50%;
+            text-align: left;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+        }
+
+/* Activated .contributors */
+input#total:checked ~ #tab-total,
+input#server:checked ~ #tab-server,
+input#desktop:checked ~ #tab-desktop,
+input#mobile:checked ~ #tab-mobile,
+input#python-zulip-api:checked ~ #tab-python-zulip-api,
+input#zulip-js:checked ~ #tab-zulip-js,
+input#zulipbot:checked ~ #tab-zulipbot,
+input#terminal:checked ~ #tab-terminal {
+    display: block;
+}
+input#total:checked ~ #tab-total .contributors-grid, input#server:checked ~ #tab-server .contributors-grid, input#desktop:checked ~ #tab-desktop .contributors-grid, input#mobile:checked ~ #tab-mobile .contributors-grid, input#python-zulip-api:checked ~ #tab-python-zulip-api .contributors-grid, input#zulip-js:checked ~ #tab-zulip-js .contributors-grid, input#zulipbot:checked ~ #tab-zulipbot .contributors-grid, input#terminal:checked ~ #tab-terminal .contributors-grid {
+        padding-top: 5px;
+        display: grid;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+.avatar_img {
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20%;
+}
+
+.tab-loading,
+.last-updated {
+    color: hsl(0, 0%, 67%);
+    font-size: 0.9em !important;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.history .sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.history .sponsors .sponsor-picture img {
+        height: 170px;
+        margin: 0 20px;
+        pointer-events: none;
+    }
+
+.login-page-header {
+    width: 100%;
+}
+
+.btn-direct {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 0;
+    min-width: 300px;
+}
+
+.btn-admin {
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(198, 100%, 48%);
+    border-style: solid;
+    color: hsl(207, 89%, 54%);
+}
+
+.login-page {
+    text-align: center;
+}
+
+.login-page .alert {
+        width: 320px;
+        margin: auto;
+        margin-top: -30px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+.register-form {
+    display: inline-block;
+    text-align: center;
+}
+
+.register-button {
+    margin-left: 10px;
+}
+
+.new-organization-button {
+    margin-top: 10px;
+}
+
+input.new-organization-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form {
+    margin: auto;
+    /* plus input padding. */
+    width: 328px;
+    margin-bottom: 10px;
+}
+
+.login-form .controls, .register-form .controls {
+        margin-right: 10px;
+    }
+
+.login-social {
+    max-width: 100%;
+    min-width: 300px;
+    margin: auto;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.app-main,
+.header-main {
+    min-width: 350px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.hello-main {
+    max-width: none;
+    min-width: 0;
+    padding: 0 !important;
+}
+
+.top-links {
+    text-align: right;
+}
+
+.top-links a {
+        display: inline-block;
+        color: hsl(0, 0%, 100%);
+        padding: 2px 7px 1px 8px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.2s ease-in;
+        border-radius: 4px;
+    }
+
+.top-links a:hover {
+            text-decoration: none;
+            background-color: hsla(0, 0%, 100%, 1);
+            color: hsl(170, 50%, 40%);
+        }
+
+.centered-button {
+    text-align: center;
+}
+
+/* -- password reset container -- */
+.password-reset {
+    display: inline-block;
+    text-align: left;
+    width: 328px;
+}
+.password-reset form {
+        margin: 0;
+    }
+.password-reset #pw_strength {
+        width: 328px;
+        margin-top: 20px;
+    }
+.password-reset .pitch {
+        width: auto;
+    }
+.password-reset .input-group {
+        margin: 15px 0;
+    }
+.password-reset .input-group input[type="text"],
+        .password-reset .input-group input[type="password"] {
+            width: calc(100% - 14px);
+        }
+.password-reset .input-group #pw_strength {
+            width: 100%;
+        }
+.password-reset .input-group.m-t-30 {
+            margin-top: 30px;
+        }
+.password-reset p {
+        margin: 0;
+    }
+.password-reset .progress {
+        margin: 0;
+    }
+.password-reset #email-section .fakecontrol {
+        display: inline-block;
+        margin: 0;
+    }
+
+.input-group.margin {
+        margin: 10px 0;
+    }
+
+.input-group .progress {
+        margin: 0;
+        margin-top: 5px;
+        display: inline-block;
+    }
+
+/* --- new settings styling --- */
+
+.input-group input[type="radio"],
+    .input-group input[type="checkbox"] {
+        margin: 0 10px 0 0;
+    }
+
+.input-group input[type="radio"] {
+        position: relative;
+        top: 8px;
+    }
+
+.input-group label {
+        margin: 0;
+        padding: 5px 0;
+    }
+
+.input-group label.inline-block {
+            /* eyeballing off-centered aesth. */
+            margin-top: 1px;
+        }
+
+.input-group.radio {
+        margin-left: 25px;
+    }
+
+.input-group.grid {
+        padding: 10px 0;
+        border-bottom: 1px solid hsl(0, 0%, 87%);
+    }
+
+.input-group.grid label.inline-block {
+            width: 200px;
+        }
+
+.center-container {
+    min-height: calc(100vh - 94px);
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#registration-email label {
+        float: left;
+        padding-top: 5px;
+        width: 100%;
+        display: block;
+        margin: 0;
+        text-align: left;
+    }
+
+.center-block {
+    text-align: left;
+    display: inline-block;
+}
+
+.center-block .pitch {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+.center-block .controls {
+        margin: 0;
+        text-align: left;
+    }
+
+.center-block #send_confirm input[type="text"] {
+        margin-top: 20px;
+    }
+
+.center-block .button {
+        margin-top: 20px;
+        padding: 5px 10px;
+        border-radius: 2px;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+.error_page {
+    min-height: calc(100vh - 290px);
+    height: 100%;
+    background-color: hsl(163, 42%, 85%);
+    font-family: "Source Sans 3", sans-serif;
+}
+
+.error_page .container {
+    padding: 20px 0;
+}
+
+.error_page .row-fluid {
+    margin-top: 60px;
+}
+
+.error_page img {
+    display: block;
+    clear: right;
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+}
+
+.error_page .errorbox {
+    margin: auto;
+    border: 2px solid hsl(163, 43%, 46%);
+    max-width: 500px;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 0 4px hsl(163, 43%, 46%);
+    font-size: 18px;
+}
+
+.error_page .errorbox.config-error {
+        max-width: 750px;
+    }
+
+.error_page p {
+    color: hsl(0, 0%, 20%);
+}
+
+.error_page .errorcontent {
+    text-align: left;
+    padding: 40px 40px 30px;
+}
+
+.error_page .lead {
+    color: hsl(163, 49%, 44%);
+    font-size: 35px;
+    margin-bottom: 20px;
+    line-height: normal;
+}
+
+.hourglass-img {
+    width: initial !important;
+    margin-bottom: 25px !important;
+}
+
+@media (max-width: 800px) {
+        .app.help .markdown {
+            width: 100vw;
+        }
+
+            .app.help .markdown .content {
+                max-width: none;
+                margin-left: 50px;
+            }
+
+        .app.help .hamburger {
+            display: block;
+            position: fixed;
+            top: 70px;
+            left: 9px;
+            fill: hsl(0, 0%, 100%);
+            z-index: 2;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .app.help .sidebar {
+            position: fixed;
+            top: 59px;
+            right: calc(100vw - 50px);
+            width: 100%;
+            min-width: unset;
+            height: calc(100vh - 59px);
+            pointer-events: none;
+            overflow: hidden;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+        }
+
+        .app.help .sidebar.show {
+            pointer-events: initial;
+            transform: translateX(calc(100% - 50px));
+            overflow: auto;
+        }
+
+            .app.help .sidebar.show .content {
+                visibility: visible;
+            }
+
+            .app.help .sidebar.show + .hamburger {
+                transform: translateX(calc(100vw - 50px));
+            }
+
+            .app.help .sidebar.show ~ .markdown {
+                filter: brightness(0.7);
+            }
+
+    .app-main,
+    .header-main {
+        min-width: auto;
+    }
+
+    .app-main {
+        padding: 0;
+    }
+        .help .sidebar .content:not(.show) {
+            visibility: hidden;
+        }
+
+        .help .sidebar:not(.show) a.highlighted {
+            background-color: transparent;
+        }
+}
+
+@media (max-width: 815px) {
+    .footer {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        grid-template-columns: repeat(2, -webkit-max-content);
+        grid-template-columns: repeat(2, max-content);
+    }
+
+        .footer .footer-section {
+            /* 40vw to fit content in 2 grid columns. */
+            max-width: 40vw;
+        }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 0 !important;
+    }
+
+    .input-large {
+        display: block !important;
+        width: 100% !important;
+        min-height: 30px !important;
+        margin: 0 !important;
+        padding: 4px 6px !important;
+        line-height: 20px !important;
+        box-sizing: border-box !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .line-break-desktop {
+        display: none;
+    }
+
+    .contributors-list {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-height: 600px) {
+    .password-container {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 558px) {
+            .team .bdfl .profile-name,
+            .team .bdfl .profile-role {
+                text-align: center;
+            }
+}
+
+@media (max-width: 500px) {
+        .app.help .sidebar {
+            top: 39px;
+            height: calc(100vh - 39px);
+        }
+
+        .app.help .hamburger {
+            top: 50px;
+        }
+
+    .help .app-main {
+        margin-top: 39px;
+    }
+
+    .help .markdown {
+        height: calc(100vh - 39px);
+    }
+
+    .error_page .lead {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .brand.logo .light {
+        display: none;
+    }
+
+    .center-container {
+        display: block;
+    }
+
+    .header {
+        padding: 4px 0 6px;
+    }
+
+    .header-main {
+        max-width: 100vw;
+        padding: 0 10px;
+    }
+
+    .footer {
+        grid-template-columns: repeat(1, -webkit-max-content);
+        grid-template-columns: repeat(1, max-content);
+    }
+
+        .footer .footer-section {
+            width: calc(100% - 40px);
+            max-width: none;
+            text-align: center;
+        }
+}
+
+.emoji {
+    height: 25px;
+    width: 25px;
+    vertical-align: text-bottom;
+}
+
+label.label-title {
+    font-weight: 600;
+}
+
+.inline-block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+#find_account .form-control {
+    height: 30px;
+}
+
+#find_account .btn {
+    height: 40px;
+    border-radius: 5px;
+}
+
+.documentation-footer {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+#devtools-wrapper {
+    text-align: right;
+}
+
+#devtools-registration {
+    float: left;
+}
+
+#devtools-registration form {
+        display: inline;
+    }
+
+#devtools-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.portico-page.error {
+    padding-bottom: 0;
+}
+
+.portico-page.error .portico-page-container {
+    padding: 0;
+}
+
+#third-party-apps {
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.api-argument .api-argument-name {
+        font-family: "Source Code Pro", monospace;
+    }
+
+.api-argument .api-argument-name .api-argument-hover-link i.fa {
+            opacity: 0;
+            font-size: 0.9em;
+        }
+
+.api-argument .api-argument-name:hover .api-argument-hover-link i.fa {
+            opacity: 1;
+            color: hsl(0, 0%, 0%);
+            cursor: pointer;
+        }
+
+.api-argument .api-field-type {
+        text-transform: lowercase;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+.api-argument .api-argument-example-label {
+        font-style: italic;
+    }
+
+.api-argument .api-argument-required {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        color: hsl(14, 75%, 60%);
+    }
+
+.api-argument .api-argument-optional {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 12px;
+        color: hsl(0, 0%, 47%);
+    }
+
+.api-argument .api-argument-deprecated {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 12px;
+        color: hsl(0, 50%, 60%);
+    }
+
+.api-field-type {
+    color: hsl(176, 46.4%, 41%);
+}
+
+.desktop-redirect-box {
+    text-align: center;
+}
+
+.desktop-redirect-box .copy-token-info {
+        font-weight: normal;
+    }
+
+.desktop-redirect-box #desktop-data {
+        padding: 13px 12px 12px;
+        font-family: "Source Code Pro", monospace;
+    }
+
+.desktop-redirect-image {
+    margin-bottom: 20px;
+}
+
+.unsupported_browser_page {
+    padding-bottom: 80px;
+}
+
+#navbar-custom-message {
+    font-size: 1rem;
+    background: linear-gradient(145deg, hsl(191, 56%, 55%), hsl(169, 65%, 42%));
+    color: hsl(0, 0%, 100%);
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    top: 0;
+    padding: 10px;
+    border-bottom: 1px solid hsl(177, 52%, 55%);
+    z-index: 5;
+}
+
+#navbar-custom-message a {
+        color: hsl(0, 0%, 100%);
+        text-decoration: underline;
+    }
+
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./static/styles/portico/portico_signin.css ***!
+  \**********************************************************************************************************************************************************************************************/
+html {
+    min-height: 500px;
+}
+
+.flex {
+    display: flex;
+    padding: 80px 0;
+    align-items: center;
+    justify-content: center;
+
+    min-height: calc(100vh - 402px);
+}
+
+.m-10 {
+    margin: 10px;
+}
+
+.white-box {
+    position: relative;
+    padding: 30px;
+    min-width: 0;
+
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.1);
+    border: 1px solid hsl(0, 0%, 87%);
+    border-radius: 4px;
+}
+
+.bottom-text {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.bottom-text a {
+        color: hsl(164, 100%, 23%);
+    }
+
+.bottom-text a:hover {
+            text-decoration: none;
+            color: hsl(156, 62%, 61%);
+        }
+
+.bottom-text-large {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+.bottom-text-large a {
+        color: hsl(164, 100%, 23%);
+    }
+
+.bottom-text-large a:hover {
+            text-decoration: none;
+            color: hsl(156, 62%, 61%);
+        }
+
+.grey {
+    color: hsl(0, 0%, 67%);
+}
+
+.find-account-page-container #find_account i {
+    font-size: 0.8em;
+}
+
+.app-main .login-page-header {
+        font-size: 1.5em;
+        font-weight: 300;
+        margin: 0;
+        height: 0;
+        transform: translateX(-15px) translateY(-60px);
+        text-align: left;
+    }
+
+.app-main .login-page-container.dev-login .login-page-header {
+            height: auto;
+            margin-top: 20px;
+            transform: none;
+            text-align: center;
+        }
+
+.app-main .login-page-container.dev-login h2 {
+            font-size: 1em;
+            font-weight: 400;
+        }
+
+.app-main .login-page-container.dev-login .group {
+            display: inline-block;
+            vertical-align: top;
+
+            margin: 0 20px;
+        }
+
+.app-main.forgot-password-container {
+        font-weight: 400;
+    }
+
+.app-main.find-account-page-container {
+        width: 500px;
+        font-weight: 400;
+    }
+
+.app-main.goto-account-page-container {
+        width: 500px;
+        font-weight: 400;
+    }
+
+.app-main.goto-account-page-container .realm-redirect-form {
+            text-align: center;
+        }
+
+.app-main.goto-account-page-container .realm-redirect-form .inline-block {
+                text-align: center;
+            }
+
+.app-main.confirm-continue-page-container {
+        width: 400px;
+        font-weight: 400;
+    }
+
+.app-main.confirm-continue-page-container .white-box {
+            min-width: 365px;
+        }
+
+.app-main.confirm-continue-page-container .form-inline {
+            display: inline-block;
+        }
+
+.app-main.confirm-continue-page-container .form-inline .outline {
+            border: 2px inset hsl(213, 23%, 25%);
+            background-color: hsl(0, 0%, 100%);
+            color: hsl(213, 23%, 25%);
+            padding: 13px 20px 11px;
+        }
+
+.app-main.confirm-continue-page-container .form-inline .outline:hover {
+                background-color: hsl(213, 65%, 97%);
+            }
+
+.app-main.confirm-continue-page-container p {
+            font-size: 19px;
+        }
+
+.login-page-container.dev-login {
+        margin-top: 20px;
+        border: none;
+    }
+
+.login-page-container.dev-login .login-form {
+            width: auto;
+        }
+
+.login-page-container .group {
+        margin: 0 20px;
+        display: inline-block;
+    }
+
+.login-page-container input[type="submit"] {
+        color: hsl(0, 0%, 67%);
+        border: 1px solid hsl(0, 0%, 87%);
+        border-radius: 4px;
+        background-color: transparent;
+
+        transition: color 0.3s ease, border 0.3s ease;
+    }
+
+.login-page-container input[type="submit"]:hover {
+            border-color: hsl(0, 0%, 53%);
+            color: hsl(0, 0%, 27%);
+        }
+
+.login-page-container input[type="submit"].btn-admin {
+            border-color: hsl(170, 41%, 52%);
+            color: hsl(170, 41%, 52%);
+        }
+
+.login-page-container input[type="submit"].btn-admin:hover {
+                color: hsl(156, 62%, 61%);
+                border-color: hsl(156, 62%, 61%);
+            }
+
+.new-style .login-page-container .alert,
+.register-page-container .new-style .alert {
+    margin: 0;
+    text-align: left;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.register-page-container.closed-realm .right-side {
+            display: none;
+        }
+
+.register-page-container.closed-realm .left-side {
+            border-right: none;
+        }
+
+.register-page-container.closed-realm .invite-required {
+            display: block;
+
+            color: hsl(0, 0%, 67%);
+            font-weight: normal;
+        }
+
+.register-page-container .invite-required {
+        display: none;
+        line-height: 1;
+    }
+
+.register-page-container .invite-required i {
+            margin-right: 5px;
+        }
+
+.find-account-page-container h3,
+.forgot-password-container h3 {
+    margin-top: 0;
+
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.forgot-password-container {
+    width: 503px;
+}
+
+.forgot-password-container h3,
+    .forgot-password-container form {
+        margin-bottom: 0;
+    }
+
+.deactivated-realm-container {
+    width: 503px;
+}
+
+.header {
+    color: hsl(0, 0%, 27%);
+    background-color: hsl(0, 0%, 100%);
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+.header .top-links a,
+    .header .header-main .logo span {
+        color: hsl(0, 0%, 27%);
+    }
+
+.register-form.new-style {
+        text-align: left;
+        color: hsl(0, 0%, 45%);
+    }
+
+.register-form #errors {
+        font-size: 0.8em;
+        font-weight: 400;
+        margin-bottom: 20px;
+        margin-top: 10px;
+    }
+
+.register-form #errors:empty {
+            margin-top: 0;
+        }
+
+.register-form button {
+        margin-top: 22px;
+    }
+
+.register-form .new-organization-button {
+        margin-top: 25px;
+    }
+
+.account-accept-terms-page #registration,
+    .account-accept-terms-page #accept_tos_button {
+        margin: 0;
+    }
+
+.account-accept-terms-page .fakecontrol {
+        font-weight: normal;
+    }
+
+.account-accept-terms-page .description {
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+.account-accept-terms-page .center-block {
+        max-width: 800px;
+    }
+
+.account-accept-terms-page .center-block .controls {
+            margin-bottom: 5px;
+        }
+
+.account-accept-terms-page #accept_tos_button {
+        margin-top: 20px;
+    }
+
+.register-account .terms-of-service .input-group,
+    .register-account .default-stream-groups .input-group,
+    .register-account .default-stream-groups p {
+        width: 330px;
+        margin: 0 auto 10px;
+    }
+
+.register-account .terms-of-service .text-error {
+        position: relative;
+        display: block;
+        top: -5px;
+        padding: 0;
+        height: 0;
+
+        font-size: 0.7em;
+        font-weight: 600;
+    }
+
+.account-creation {
+    font-weight: 400;
+}
+
+.account-creation .pitch {
+        margin-bottom: 0;
+    }
+
+.account-creation .alert.alert-info {
+        padding: 8px 14px;
+        text-align: left;
+
+        font-size: 1em;
+        line-height: 1.3;
+    }
+
+.account-creation .white-box p:last-of-type {
+        margin-bottom: 0;
+    }
+
+.relative {
+    position: relative;
+}
+
+.new-style button {
+        display: inline-block;
+        vertical-align: top;
+        padding: 13px 22px;
+
+        font-family: "Source Sans 3", sans-serif;
+
+        font-size: 1.2rem;
+        font-weight: 400;
+        box-sizing: border-box;
+        outline: none;
+        color: hsl(0, 0%, 100%);
+        background-color: hsl(213, 23%, 25%);
+
+        margin: 25px 0 5px;
+        height: 50px;
+
+        border: none;
+        border-radius: 4px;
+
+        transition: all 0.3s ease;
+    }
+
+.new-style button:hover {
+            background-color: hsl(213, 33%, 31%);
+        }
+
+.new-style button:active {
+            background-color: hsl(214, 28%, 16%);
+        }
+
+.new-style button:focus {
+            outline: 3px solid hsl(213, 81%, 79%);
+        }
+
+.new-style button.full-width {
+            width: 100%;
+        }
+
+.new-style .alert-info {
+        font-weight: 400;
+    }
+
+.new-style .demo-organization-warning {
+        position: relative;
+        display: block;
+        background-color: hsl(360, 100%, 93%);
+        border: 1px solid hsl(0, 0%, 80%);
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: hsl(0, 0%, 27%);
+    }
+
+.new-style .demo-organization-warning a {
+            text-decoration: none;
+        }
+
+.new-style .demo-organization-warning::before {
+            display: inline;
+            margin-right: 8px;
+
+            font-family: FontAwesome;
+            font-weight: 600;
+            content: "\f071";
+        }
+
+.new-style .alert:not(.alert-info) {
+            padding: 0;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.7em;
+            line-height: 1.2;
+            background-color: transparent;
+
+            border: none;
+            color: hsl(0, 44%, 54%);
+        }
+
+.new-style .alert.alert-error {
+            text-align: left;
+        }
+
+.new-style .form-inline {
+        margin: 0;
+    }
+
+.new-style .get-started {
+        font-size: 2.5rem;
+        text-align: center;
+        color: hsl(0, 0%, 40%);
+        margin-bottom: 20px;
+    }
+
+.new-style .right-side .alert {
+        max-width: 328px;
+    }
+
+.new-style .input-box {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+.new-style .input-box input[type="text"],
+        .new-style .input-box input[type="email"],
+        .new-style .input-box input[type="password"],
+        .new-style .input-box textarea,
+        .new-style .input-box select {
+            padding: 10px 32px 10px 12px;
+            margin: 25px 0 5px;
+
+            font-family: "Source Sans 3", sans-serif;
+            font-size: 1.2rem;
+            line-height: normal;
+            height: auto;
+
+            width: 280px;
+
+            border: 1px solid hsl(0, 0%, 87%);
+            box-shadow: none;
+            border-radius: 4px;
+
+            transition: border 0.3s ease;
+        }
+
+.new-style .input-box input[type="text"]:focus:invalid, .new-style .input-box input[type="email"]:focus:invalid, .new-style .input-box input[type="password"]:focus:invalid, .new-style .input-box textarea:focus:invalid, .new-style .input-box select:focus:invalid {
+                box-shadow: none;
+                color: hsl(0, 0%, 27%);
+            }
+
+.new-style .input-box input[type="text"]:focus, .new-style .input-box input[type="email"]:focus, .new-style .input-box input[type="password"]:focus, .new-style .input-box textarea:focus, .new-style .input-box select:focus {
+                border: 1px solid hsl(0, 0%, 53%);
+            }
+
+.new-style .input-box input[type="email"] {
+            margin-bottom: 10px;
+        }
+
+.new-style .input-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            margin-top: 1px;
+
+            transition: all 0.3s ease;
+        }
+
+.new-style .input-box.moving-label input[type="text"]:invalid + label,
+            .new-style .input-box.moving-label input[type="email"]:invalid + label,
+            .new-style .input-box.moving-label input[type="password"]:invalid + label {
+                transform: translateY(39px) translateX(14px);
+                font-size: 1.2rem;
+                font-weight: 400;
+                color: hsl(0, 0%, 67%);
+
+                pointer-events: none;
+            }
+
+.new-style .input-box label,
+        .new-style .input-box input[type="text"]:focus + label,
+        .new-style .input-box input[type="email"]:focus + label,
+        .new-style .input-box input[type="password"]:focus + label,
+        .new-style .input-box select:focus + label,
+        .new-style .input-box input[type="text"]:valid + label,
+        .new-style .input-box input[type="email"]:valid + label,
+        .new-style .input-box input[type="password"]:valid + label,
+        .new-style .input-box select:valid + label {
+            left: 0;
+            transform: translateY(0) translateX(0);
+            pointer-events: auto;
+
+            font-size: 1rem;
+            font-weight: 600;
+            color: hsl(0, 0%, 27%);
+        }
+
+/* The width of the "Organization name" text box
+           right above this one is also 326px. */
+
+.new-style .input-box select {
+            width: 326px;
+        }
+
+.new-style .input-box p.text-error {
+            display: block;
+            padding: 0;
+
+            color: hsl(1.1, 44.7%, 50.4%);
+            font-size: 0.7em;
+            font-weight: 600;
+            text-align: left;
+            line-height: 1.2;
+
+            position: relative;
+            left: 1px;
+        }
+
+.new-style .input-box label.text-error {
+            display: block;
+
+            top: 0;
+            right: 0;
+            text-align: right;
+            color: hsl(1.1, 44.7%, 50.4%);
+            font-size: 0.7em;
+            font-weight: 600;
+            padding-left: 0;
+        }
+
+.new-style .lead {
+        margin: 0;
+    }
+
+.new-style .inline-block {
+        text-align: left;
+    }
+
+.new-style .contact-admin p.invite-hint {
+        font-size: 1.3rem;
+        margin-top: 0.8rem;
+        text-align: center;
+    }
+
+#login_form .input-box {
+        display: block;
+    }
+
+#login_form .loader {
+        display: none;
+        vertical-align: top;
+        position: relative;
+
+        height: 30px;
+        margin-top: -10px;
+        top: 5px;
+    }
+
+/* -- /accounts/register/ page -- */
+.portico-page .pitch h1 {
+            margin-bottom: 5px;
+        }
+.portico-page .pitch p {
+            font-weight: 400;
+            color: hsl(0, 0%, 67%);
+        }
+.portico-page .or {
+        width: 100%;
+        display: block;
+        margin: 10px auto;
+        color: hsl(0, 0%, 34%);
+        font-weight: 600;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+.portico-page .or::before {
+            content: " ";
+
+            display: inline-block;
+            position: absolute;
+            width: calc(100% - 5px);
+            top: calc(50% - 2px);
+            left: 0;
+            z-index: -1;
+
+            border-bottom: 2px solid hsl(0, 0%, 87%);
+        }
+.portico-page .or span {
+            background-color: hsl(0, 0%, 100%);
+            padding: 0 5px;
+        }
+
+.register-account .pitch,
+.account-accept-terms-page .pitch {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.split-view .org-header {
+        text-align: left;
+    }
+
+.split-view .org-header .info-box {
+            display: inline-block;
+            position: relative;
+            margin: 20px 0 0 20px;
+            width: calc(100% - 125px);
+
+            /* full width minus the avatar + padding + borders */
+            text-align: left;
+        }
+
+.split-view .left-side {
+        width: 500px;
+        border-right: 1px solid hsl(0, 0%, 93%);
+        position: relative;
+        left: -1px;
+    }
+
+.split-view .left-side .description {
+            text-align: left;
+            font-weight: normal;
+
+            margin-top: 20px;
+            margin-right: 10px;
+        }
+
+.split-view .left-side + .right-side {
+            border-left: 1px solid hsl(0, 0%, 93%);
+            /* this is to make sure the borders of the left and right side overlap
+               each other. */
+            padding-left: 15px;
+            margin-left: -5px;
+        }
+
+.split-view .right-side .form-inline {
+        width: 328px;
+    }
+
+.split-view .right-side,
+.split-view .left-side {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.split-view .org-header .avatar,
+.register-page-container .org-header .avatar {
+    display: inline-block;
+    vertical-align: top;
+
+    width: 100px;
+    height: 100px;
+}
+
+.info-box .organization-name,
+    .info-box .organization-path {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+.info-box .organization-name {
+        font-size: 1.5em;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+.info-box .organization-path {
+        font-weight: 400;
+        color: hsl(0, 0%, 47%);
+        margin-top: 5px;
+    }
+
+.confirm-email-change-page .white-box {
+    max-width: 500px;
+    word-break: break-word;
+}
+
+.anonymous_access_form button {
+        /* Avoid excessive space at top of login form */
+        margin-top: 0;
+    }
+
+button.login-social-button {
+    width: 328px;
+    height: auto;
+    /* Using 44px gives us more space between text and icon so that they don't overlap. */
+    /* Tested in Russian laguange which has the maximum text. */
+    padding-left: 44px;
+    line-height: 1;
+
+    background-size: auto 60%;
+    background-repeat: no-repeat;
+    background-position: 13px 50%;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.3), 0 0 5px hsla(0, 0%, 0%, 0.1);
+    margin-left: 0;
+    margin-top: 0;
+
+    color: hsl(0, 0%, 34%);
+}
+
+button.login-social-button:hover {
+        background-color: hsl(0, 0%, 98%);
+        box-shadow: 1px 2px 5px hsla(0, 0%, 0%, 0.2);
+    }
+
+button.login-social-button:active {
+        background-color: hsl(0, 0%, 93%);
+        box-shadow: 0 1px 1px hsla(0, 0%, 0%, 0.3);
+    }
+
+button#login_auth_button_gitlab,
+button#register_auth_button_gitlab {
+    /* GitLab icon size looks a bit inconsistent with others. This fixes it. */
+    background-size: auto 90%;
+    background-position-x: 3px;
+}
+
+.login-page-container .right-side .actions,
+.back-to-login-wrapper {
+    margin: 20px 0 0;
+    text-align: left;
+}
+
+.back-to-login-wrapper {
+    line-height: 0;
+}
+
+.back-to-login-wrapper .back-to-login i {
+        position: relative;
+        top: 5px;
+
+        font-size: 0.8em;
+    }
+
+.split-view .actions a,
+.back-to-login {
+    color: hsl(164, 100%, 23%);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8em;
+    line-height: 1.5;
+    vertical-align: top;
+
+    transition: color 0.2s ease;
+}
+
+.split-view .actions a:hover, .back-to-login:hover {
+        text-decoration: none;
+        color: hsl(156, 62%, 61%);
+    }
+
+#registration {
+    width: auto;
+    padding: 0;
+    margin: 30px;
+}
+
+#registration fieldset {
+        margin: 30px;
+    }
+
+#registration fieldset .input-box:last-child {
+            margin-bottom: 0;
+        }
+
+#registration .info-box {
+        margin: 10px 0 0 20px;
+    }
+
+#registration .info-box .organization-name {
+            max-width: 228px;
+        }
+
+#registration .input-box {
+        display: block;
+        text-align: center;
+        width: 330px;
+        margin: 25px auto 10px;
+        position: relative;
+    }
+
+#registration .input-box.full-width {
+            width: calc(100% - 20px);
+        }
+
+#registration .input-box label {
+            position: absolute;
+            margin: 0;
+            top: 0;
+            left: 2px;
+        }
+
+#registration .input-box label.static {
+                width: 100%;
+                text-align: left;
+                position: static !important;
+                margin-left: 2px;
+            }
+
+#registration .input-box.support-form-field {
+            width: 450px;
+        }
+
+#registration .input-box.support-form-field input,
+            #registration .input-box.support-form-field textarea {
+                width: 400px;
+                font-size: 1rem;
+            }
+
+#registration .input-box.support-form-field textarea {
+                color: hsl(0, 0%, 33%);
+                vertical-align: middle;
+                background-color: hsl(0, 0%, 100%);
+            }
+
+#registration .input-box.support-form-field textarea:focus {
+                    outline: 0;
+                }
+
+#registration [for="realm_in_root_domain"] {
+        font-weight: normal !important;
+    }
+
+#registration .register-button-box {
+        text-align: center;
+    }
+
+#registration .register-button {
+        margin: 25px auto 30px;
+        width: 330px;
+        border-radius: 4px;
+    }
+
+#registration .support-submit-button {
+        margin-top: 20px;
+        margin-bottom: 5px;
+        width: 450px;
+    }
+
+#registration .register-button .loader {
+        display: none;
+        vertical-align: top;
+        position: relative;
+        height: 30px;
+        margin-top: -10px;
+        top: 5px;
+    }
+
+#registration #id_team_subdomain.subdomain {
+        margin-top: 0;
+        text-align: right;
+        position: relative;
+        padding-right: 10px;
+
+        width: 150px;
+    }
+
+#registration #id_team_subdomain.subdomain + .realm_subdomain_label {
+            top: 15px;
+            margin-left: 180px;
+            display: inline-block;
+
+            font-weight: normal;
+            font-size: inherit;
+        }
+
+#registration #subdomain_section .inline-block {
+            width: 100%;
+        }
+
+#registration #subdomain_section .or {
+            margin-top: 0;
+        }
+
+#registration #id_email,
+    #registration #support_from,
+    #registration #support_realm {
+        font-weight: normal;
+        margin: 2px;
+        padding-top: 25px;
+        text-align: left;
+        overflow-wrap: break-word;
+    }
+
+#registration .help-text {
+        width: 100%;
+        max-width: none;
+        margin: 2px 0;
+        text-align: left;
+        color: hsl(0, 0%, 47%);
+        font-size: 0.9rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+#registration .help-inline {
+        display: block;
+    }
+
+#registration legend {
+        display: block;
+        width: 100%;
+        padding: 0;
+        margin-bottom: 0;
+        font-size: 21px;
+        line-height: 40px;
+        color: hsla(0, 0%, 0%, 0.5);
+        border: 0;
+        border-bottom: 1px solid hsla(0, 0%, 90%, 1);
+    }
+
+#registration legend + .input-box {
+            margin-top: 20px;
+        }
+
+#registration .center-block .pitch {
+        margin-bottom: 0;
+    }
+
+#registration .input-group label {
+            font-size: 1rem;
+        }
+
+#registration .input-group label.inline-block {
+                margin-top: -1px;
+            }
+
+#registration .input-group label.marketing_emails_checkbox {
+                text-indent: -24px;
+                margin-left: 24px;
+            }
+
+#registration .input-group.radio {
+            margin: 0;
+            padding: 0;
+        }
+
+#registration .org-url {
+        margin-bottom: 5px !important;
+    }
+
+.static.org-url + #subdomain_section {
+    margin-top: 0 !important;
+}
+
+.static.org-url + #subdomain_section .or {
+        display: none;
+    }
+
+#profile_info_section #profile_avatar {
+        border: 1px solid hsl(0, 0%, 80%);
+        border-radius: 8px;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 10px;
+    }
+
+#profile_info_section #profile_full_name {
+        font-size: 1.2rem;
+        font-weight: 400;
+    }
+
+#source_realm_select_section {
+    position: relative;
+    top: 15px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+#source_realm_select {
+    font-size: 1.2rem;
+    height: 45px;
+    width: 325px;
+}
+
+#source_realm_select:focus {
+        outline: none;
+    }
+
+.goto-account-page #realm_redirect_subdomain {
+        text-align: right;
+        position: relative;
+        padding-right: 10px;
+    }
+
+.goto-account-page #realm_redirect_external_host {
+        font-size: 20px;
+        top: 13px;
+        left: 5px;
+        position: relative;
+    }
+
+.goto-account-page #realm_redirect_description {
+        top: 15px;
+        position: relative;
+    }
+
+.goto-account-page #enter-realm-button {
+        margin-top: 14px;
+    }
+
+#choose_email {
+    flex-direction: column;
+}
+
+#choose_email .white-box {
+        min-width: 450px;
+        padding: 30px 0 50px;
+    }
+
+#choose_email form {
+        padding: 0;
+        margin: 0;
+    }
+
+#choose_email form.form-horizontal:hover {
+            background-color: hsl(202, 56%, 91%);
+            cursor: pointer;
+        }
+
+#choose_email form.form-horizontal:hover i.fa {
+                color: hsl(203, 63%, 76%);
+            }
+
+#choose_email .choose-email-box {
+        padding: 13px 0;
+        margin: 0 30px;
+        border-bottom: 1px solid hsl(0, 0%, 95%);
+        display: flex;
+        align-items: center;
+    }
+
+#choose_email .choose-email-box p {
+            margin: 0;
+            font-size: 0.8em;
+        }
+
+#choose_email .choose-email-box p:last-child {
+                line-height: 1.2em;
+            }
+
+#choose_email .choose-email-box .email {
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+#choose_email .choose-email-box img,
+        #choose_email .choose-email-box i {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+#choose_email .choose-email-box i.fa {
+            color: hsl(0, 0%, 67%);
+            text-align: center;
+            line-height: 38px;
+        }
+
+#choose_email .choose-email-box i.fa::before {
+                font-size: 30px;
+            }
+
+/* -- media queries -- */
+
+@media (max-width: 950px) {
+    .split-view .left-side {
+        width: 400px;
+    }
+}
+
+@media (max-width: 850px) {
+    .split-view .left-side {
+        width: 350px;
+    }
+}
+
+@media (max-width: 815px) {
+    .flex {
+        min-height: calc(100vh - 530px);
+    }
+}
+
+@media (max-width: 795px) {
+    .register-account #registration {
+        padding: 10px;
+    }
+
+    .register-page-container,
+    .login-page-container {
+        width: 400px;
+        text-align: center;
+    }
+            .split-view .org-header .avatar {
+                width: 50px;
+                height: 50px;
+            }
+
+            .split-view .org-header .info-box {
+                margin-top: 0;
+            }
+
+                .split-view .org-header .info-box .organization-path {
+                    margin-top: 0;
+                }
+
+        .split-view .left-side,
+        .split-view .right-side {
+            display: block;
+            margin: 0 auto !important;
+            max-width: 100%;
+        }
+
+        .split-view .left-side + .right-side {
+            border-left: none;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .split-view .left-side {
+            border: none;
+            margin-right: 0;
+            min-height: 0;
+            margin-bottom: 20px;
+            width: 324px;
+        }
+
+            .split-view .left-side .description {
+                margin: 20px 0;
+            }
+
+                .split-view .left-side .description a {
+                    color: hsl(200, 100%, 36%);
+                }
+
+        .split-view .right-side {
+            width: 324px;
+        }
+}
+
+@media (max-width: 500px) {
+    .new-style .get-started {
+        font-size: 1.6em;
+    }
+
+    .app-main.register-page-container,
+    .app-main.login-page-container,
+    .app-main.find-account-page-container,
+    .app-main.goto-account-page-container,
+    .app-main.forgot-password-container {
+        display: inline-block;
+        padding: 20px;
+        width: calc(100% - 40px);
+    }
+        .forgot-password-container form .input-box {
+            text-align: center;
+        }
+
+        .forgot-password-container form button {
+            width: 328px;
+        }
+
+    .white-box {
+        box-shadow: none;
+    }
+
+    .account-creation {
+        font-weight: 400;
+    }
+
+    .flex {
+        /* the header becomes smaller, so comp for that. */
+        min-height: calc(100vh - 505px);
+    }
+}
+
+@media (max-width: 400px) {
+    .flex {
+        min-height: calc(100vh - 560px);
+    }
+}
+
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./static/styles/portico/markdown.css ***!
+  \****************************************************************************************************************************************************************************************/
+.markdown {
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow: auto;
+}
+
+    .markdown h1[id]::before, .markdown h2[id]::before, .markdown h3[id]::before, .markdown h4[id]::before {
+            display: block;
+            content: " ";
+            visibility: hidden;
+        }
+
+    .markdown h2[id]::before, .markdown h3[id]::before, .markdown h4[id]::before {
+            margin-top: -10px;
+            height: 10px;
+        }
+
+    .markdown h1 {
+        border-bottom: 1px solid hsl(0, 0%, 93%);
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .markdown h1[id]::before {
+                margin-top: -30px;
+                height: 30px;
+            }
+
+    .markdown h1#zulip-administration {
+            font-size: 1.75em;
+            padding: 10px 0;
+            margin-bottom: 0;
+            line-height: 100%;
+        }
+
+    .markdown h2 {
+        font-size: 1.5em;
+        line-height: 1.25;
+        margin: 20px 0 5px;
+    }
+
+    .markdown h3 {
+        font-size: 1.25em;
+        line-height: 1.25;
+        opacity: 1;
+        margin: 20px 0 5px;
+    }
+
+    .markdown h1,
+    .markdown h2,
+    .markdown h3 {
+        font-weight: 700;
+        -webkit-user-select: none;
+                user-select: none;
+    }
+
+    .markdown h1:hover, .markdown h2:hover, .markdown h3:hover {
+            cursor: pointer;
+        }
+
+    .markdown h1:hover::after, .markdown h2:hover::after, .markdown h3:hover::after {
+                display: inline-block;
+                font: normal normal normal 16px/1 FontAwesome;
+
+                cursor: pointer;
+                content: "\f0c1";
+                margin-left: 5px;
+                vertical-align: middle;
+            }
+
+    .markdown h5,
+    .markdown h6 {
+        margin: 10px 0;
+        line-height: 20px;
+    }
+
+    /* Since markdown doesn't make it easy to put an HTML element around a
+       markdown table, we instead have a model of putting an empty div
+       before it to configure a specific table's styling. */
+
+    .markdown div.centered_table + table td:not(:first-child),
+    .markdown div.centered_table + table th {
+        text-align: center;
+    }
+
+    .markdown .legend_symbol {
+        position: absolute;
+        left: 40px;
+        transform: translateX(-50%);
+    }
+
+    /* Adjust for 50px closed left sidebar state */
+
+    @media (max-width: 800px) {
+
+    .markdown .legend_symbol {
+            left: calc(5% + 50px)
+    }
+        }
+
+    .markdown .legend_label {
+        position: relative;
+        left: 30px;
+    }
+
+    .markdown li {
+        line-height: 150%;
+    }
+
+    .markdown ol {
+        counter-reset: item;
+        list-style: none;
+    }
+
+    .markdown ol > li {
+            position: relative;
+            vertical-align: top;
+            /* This needs to be wide enough for 2-digit numbers. */
+            padding-left: 33px;
+            top: -2px;
+            counter-increment: item;
+        }
+
+    .markdown ol > li::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+                content: counter(item);
+                display: inline-block;
+                vertical-align: top;
+                padding: 3px 6.5px 3px 7.5px;
+                margin-right: 5px;
+                background-color: hsl(170, 48%, 54%);
+                color: hsl(0, 0%, 100%);
+                border-radius: 100%;
+                font-size: 0.9em;
+                line-height: 1.1;
+                text-align: center;
+            }
+
+    .markdown ol > li .codehilite {
+                background-color: hsl(0, 0%, 100%);
+            }
+
+    .markdown ol > li > ul {
+                margin-bottom: 5px;
+            }
+
+    .markdown ol > li .warn,
+            .markdown ol > li .tip,
+            .markdown ol > li .keyboard_tip {
+                margin: 5px 25px;
+            }
+
+    @media (max-width: 500px) {
+
+    .markdown ol {
+            margin-left: 0
+    }
+        }
+
+    .markdown ul {
+        margin: 0 10px 15px 25px;
+    }
+
+    /* Avoid extra whitespace after nested bulleted lists. */
+
+    .markdown ul ul {
+            margin: 0 20px;
+        }
+
+    .markdown ul > li {
+            margin: 5px 0 10px;
+        }
+
+    .markdown ul > li > p {
+                margin: 0 0 5px;
+            }
+
+    .markdown ul > li > p:first-child {
+                margin: 0;
+            }
+
+    .markdown .content {
+        padding: 30px;
+        max-width: 768px;
+        background-color: hsl(0, 0%, 100%);
+    }
+
+    .markdown .content ol li p:not(:first-child) {
+            display: block;
+        }
+
+    .markdown .content > ol {
+            margin: 15px 10px;
+        }
+
+    .markdown .content > ol > li {
+                margin: 2.5px 0;
+            }
+
+    .markdown .content i.zulip-icon {
+            margin: 0 2px 2px;
+            vertical-align: middle;
+        }
+
+    @media (max-width: 500px) {
+
+    .markdown .content {
+            padding: 10px
+    }
+        }
+
+    .markdown a {
+        color: hsl(176, 46%, 41%);
+        font-weight: 600;
+    }
+
+    .markdown strong {
+        font-weight: 600;
+    }
+
+    .markdown img {
+        vertical-align: top;
+        box-shadow: 0 0 4px hsla(0, 0%, 0%, 0.05);
+        border: 1px solid hsl(0, 0%, 87%);
+        border-radius: 4px;
+    }
+
+    .markdown img.inline {
+            height: 1.4em;
+            box-shadow: none;
+        }
+
+    .markdown img.emoji-small {
+            width: 20px;
+            box-shadow: none;
+            border: none;
+            vertical-align: sub;
+        }
+
+    .markdown img.emoji-big {
+            width: 25px;
+            box-shadow: none;
+            border: none;
+        }
+
+    .markdown img.mobile-icon {
+            width: 24px;
+            box-shadow: none;
+            border: none;
+        }
+
+    .markdown .warn,
+    .markdown .tip,
+    .markdown .keyboard_tip {
+        position: relative;
+        display: block;
+        background-color: hsl(210, 22%, 96%);
+        border: 1px solid hsl(210, 22%, 90%);
+        border-radius: 4px;
+        padding: 10px;
+        margin: 5px 0;
+    }
+
+    .markdown .warn p, .markdown .tip p, .markdown .keyboard_tip p {
+            margin-bottom: 0;
+        }
+
+    .markdown .warn p:first-of-type, .markdown .tip p:first-of-type, .markdown .keyboard_tip p:first-of-type {
+            display: inline;
+        }
+
+    .markdown .tip,
+    .markdown .keyboard_tip {
+        background-color: hsl(46, 63%, 95%);
+        border: 1px solid hsl(46, 63%, 84%);
+    }
+
+    .markdown .tip::before {
+        display: inline;
+        content: "\f0eb   Tip:  ";
+        font-family: FontAwesome, "Source Sans 3", sans-serif;
+        font-weight: 600;
+    }
+
+    .markdown .keyboard_tip::before {
+        display: inline;
+        content: "\f11c   Keyboard shortcut:  ";
+        font-family: FontAwesome, "Source Sans 3", sans-serif;
+        font-weight: 600;
+    }
+
+    .markdown .indicator {
+        position: relative;
+        display: inline-block;
+        top: 1px;
+        padding: 5px;
+        border-radius: 6px;
+    }
+
+    .markdown .indicator.grey {
+            border: 1px solid hsl(0, 0%, 80%);
+        }
+
+    .markdown .indicator.grey-line {
+            border: 1px solid hsl(0, 0%, 80%);
+            top: 2px;
+        }
+
+    .markdown .indicator.grey-line::after {
+                content: "";
+                background: hsl(0, 0%, 80%);
+                height: 1.5px;
+                width: 6px;
+                display: block;
+                margin: 0.5px -2px;
+            }
+
+    .markdown .indicator.orange {
+            border: 1px solid hsl(29, 84%, 51%);
+            background: linear-gradient(
+                to bottom,
+                hsla(0, 0%, 100%, 0) 50%,
+                hsla(29, 84%, 51%, 1) 50%
+            );
+        }
+
+    .markdown .indicator.green {
+            border: 1px solid hsl(106, 74%, 44%);
+            background-color: hsla(106, 74%, 44%, 0.3);
+        }
+
+    .markdown .indicator.green.solid {
+            background-color: hsl(106, 74%, 44%);
+        }
+
+    .markdown kbd {
+        /* Same as kbd in app_components.css */
+        display: inline-block;
+        border: 1px solid hsl(0, 0%, 80%);
+        border-radius: 4px;
+        font-weight: 600;
+        white-space: nowrap;
+        background-color: hsl(0, 0%, 98%);
+        color: hsl(0, 0%, 20%);
+        text-shadow: 0 1px 0 hsl(0, 0%, 100%);
+        /* Different from app_components.css */
+        /* Removed margin setting */
+        font-size: 0.85em;
+        padding: 0 0.4em;
+    }
+
+    .markdown kbd.arrow-key {
+            /* Same as in informational_overlays.css */
+            line-height: 1;
+            padding: 0 0.2em 0.2em;
+            /* Different from informational_overlays.css */
+            font-size: 1.2em;
+        }
+
+    .markdown code {
+        /* Copied from rendered_markdown.css */
+        font-size: 0.825em;
+        unicode-bidi: embed;
+        direction: ltr;
+        white-space: initial;
+        padding: 0;
+        padding-right: 4px;
+        background-color: hsl(0, 0%, 100%);
+    }
+
+    .markdown pre code {
+            font-size: 14px;
+            white-space: pre-wrap;
+            padding: 0;
+        }
+
+    .markdown .code-section ol {
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+    .markdown .code-section ul.nav {
+            margin: 0;
+        }
+
+    .markdown .code-section ul.nav li {
+                display: inline-block;
+                padding: 5px 14px;
+                margin: 0;
+
+                cursor: pointer;
+            }
+
+    .markdown .code-section ul.nav li.active {
+                    color: hsl(176, 46%, 41%);
+                    margin-bottom: -1px;
+
+                    border: 1px solid hsl(0, 0%, 87%);
+                    border-bottom: 1px solid hsl(0, 0%, 100%);
+                    border-radius: 4px 4px 0 0;
+                }
+
+    .markdown .code-section.no-tabs ul.nav {
+            display: none;
+        }
+
+    .markdown .code-section .blocks {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid hsl(0, 0%, 87%);
+        }
+
+    .markdown .code-section .blocks > div {
+                display: none;
+            }
+
+    .markdown .code-section.has-tabs .blocks {
+            border-radius: 0 6px 6px;
+        }
+
+    .markdown .code-section.no-tabs .blocks {
+            border-radius: 6px;
+        }
+
+    .markdown .code-section.no-tabs .blocks > div,
+        .markdown .code-section.has-tabs .blocks > .active {
+            display: block;
+        }
+
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./static/styles/portico/portico_styles.css ***!
+  \**********************************************************************************************************************************************************************************************/
+
+
+
+/*# sourceMappingURL=static_styles_components_css-static_styles_portico_markdown_css-static_styles_portico_portico-164839.css.map*/
