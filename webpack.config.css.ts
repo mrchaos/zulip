@@ -103,7 +103,7 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
             ],
         },
         output: {
-            path: path.resolve(__dirname, "static/webpack-css-bundles"),
+            path: path.resolve(__dirname, "browser/webpack-css-bundles"),
             publicPath: "",
             filename: production ? "[name].[contenthash].js" : "[name].js",
             assetModuleFilename: production

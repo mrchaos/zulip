@@ -2,154 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./static/assets/icons/zulip-icons.font.js":
-/*!*************************************************!*\
-  !*** ./static/assets/icons/zulip-icons.font.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/@uppy/core/dist/style.css":
-/*!************************************************!*\
-  !*** ./node_modules/@uppy/core/dist/style.css ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/@uppy/progress-bar/dist/style.css":
-/*!********************************************************!*\
-  !*** ./node_modules/@uppy/progress-bar/dist/style.css ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/flatpickr/dist/flatpickr.css":
-/*!***************************************************!*\
-  !*** ./node_modules/flatpickr/dist/flatpickr.css ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css":
-/*!*************************************************************************!*\
-  !*** ./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/font-awesome/css/font-awesome.css":
-/*!********************************************************!*\
-  !*** ./node_modules/font-awesome/css/font-awesome.css ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./node_modules/katex/dist/katex.css":
 /*!*******************************************!*\
   !*** ./node_modules/katex/dist/katex.css ***!
   \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/simplebar/dist/simplebar.css":
-/*!***************************************************!*\
-  !*** ./node_modules/simplebar/dist/simplebar.css ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/source-code-pro/source-code-pro.css":
-/*!**********************************************************!*\
-  !*** ./node_modules/source-code-pro/source-code-pro.css ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/source-sans/source-sans-3.css":
-/*!****************************************************!*\
-  !*** ./node_modules/source-sans/source-sans-3.css ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/spectrum-colorpicker/spectrum.css":
-/*!********************************************************!*\
-  !*** ./node_modules/spectrum-colorpicker/spectrum.css ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/tippy.js/dist/tippy.css":
-/*!**********************************************!*\
-  !*** ./node_modules/tippy.js/dist/tippy.css ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./node_modules/tippy.js/themes/light-border.css":
-/*!*******************************************************!*\
-  !*** ./node_modules/tippy.js/themes/light-border.css ***!
-  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -194,30 +50,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./static/styles/alerts.css":
-/*!**********************************!*\
-  !*** ./static/styles/alerts.css ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "./static/styles/pygments.css":
-/*!************************************!*\
-  !*** ./static/styles/pygments.css ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
 /***/ "./static/styles/rendered_markdown.css":
 /*!*********************************************!*\
   !*** ./static/styles/rendered_markdown.css ***!
@@ -230,86 +62,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./static/js/bundles/app.css.js":
-/*!**************************************!*\
-  !*** ./static/js/bundles/app.css.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _common_css_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common.css.js */ "./static/js/bundles/common.css.js");
-/* harmony import */ var tippy_js_dist_tippy_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tippy.js/dist/tippy.css */ "./node_modules/tippy.js/dist/tippy.css");
-/* harmony import */ var tippy_js_themes_light_border_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tippy.js/themes/light-border.css */ "./node_modules/tippy.js/themes/light-border.css");
-/* harmony import */ var _third_bootstrap_tooltip_tooltip_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../third/bootstrap-tooltip/tooltip.css */ "./static/third/bootstrap-tooltip/tooltip.css");
-/* harmony import */ var spectrum_colorpicker_spectrum_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! spectrum-colorpicker/spectrum.css */ "./node_modules/spectrum-colorpicker/spectrum.css");
-/* harmony import */ var katex_dist_katex_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! katex/dist/katex.css */ "./node_modules/katex/dist/katex.css");
-/* harmony import */ var flatpickr_dist_flatpickr_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flatpickr/dist/flatpickr.css */ "./node_modules/flatpickr/dist/flatpickr.css");
-/* harmony import */ var flatpickr_dist_plugins_confirmDate_confirmDate_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! flatpickr/dist/plugins/confirmDate/confirmDate.css */ "./node_modules/flatpickr/dist/plugins/confirmDate/confirmDate.css");
-/* harmony import */ var _styles_rendered_markdown_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/rendered_markdown.css */ "./static/styles/rendered_markdown.css");
-/* eslint-disable import/extensions */
-
-// Import styles
-
-
-
-
-
-
-
-// import "../../styles/components.css";
-// import "../../styles/app_components.css";
-
-// import "../../styles/zulip.css";
-// import "../../styles/modal.css";
-// import "../../styles/settings.css";
-// import "../../styles/image_upload_widget.css";
-// import "../../styles/subscriptions.css";
-// import "../../styles/drafts.css";
-// import "../../styles/input_pill.css";
-// import "../../styles/informational_overlays.css";
-// import "../../styles/compose.css";
-// import "../../styles/message_edit_history.css";
-// import "../../styles/reactions.css";
-// import "../../styles/user_circles.css";
-// import "../../styles/left_sidebar.css";
-// import "../../styles/right_sidebar.css";
-// import "../../styles/lightbox.css";
-// import "../../styles/popovers.css";
-// import "../../styles/recent_topics.css";
-// import "../../styles/typing_notifications.css";
-// import "../../styles/hotspots.css";
-// import "../../styles/dark_theme.css";
-// import "../../styles/user_status.css";
-// import "../../styles/widgets.css";
-
-
-/***/ }),
-
-/***/ "./static/js/bundles/common.css.js":
-/*!*****************************************!*\
-  !*** ./static/js/bundles/common.css.js ***!
-  \*****************************************/
+/***/ "./static/js/bundles/markdown.css.js":
+/*!*******************************************!*\
+  !*** ./static/js/bundles/markdown.css.js ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _third_bootstrap_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../third/bootstrap/css/bootstrap.css */ "./static/third/bootstrap/css/bootstrap.css");
 /* harmony import */ var _third_bootstrap_css_bootstrap_btn_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../third/bootstrap/css/bootstrap-btn.css */ "./static/third/bootstrap/css/bootstrap-btn.css");
-/* harmony import */ var simplebar_dist_simplebar_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! simplebar/dist/simplebar.css */ "./node_modules/simplebar/dist/simplebar.css");
-/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! font-awesome/css/font-awesome.css */ "./node_modules/font-awesome/css/font-awesome.css");
-/* harmony import */ var _assets_icons_zulip_icons_font__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../assets/icons/zulip-icons.font */ "./static/assets/icons/zulip-icons.font.js");
-/* harmony import */ var source_sans_source_sans_3_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! source-sans/source-sans-3.css */ "./node_modules/source-sans/source-sans-3.css");
-/* harmony import */ var source_code_pro_source_code_pro_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! source-code-pro/source-code-pro.css */ "./node_modules/source-code-pro/source-code-pro.css");
-/* harmony import */ var _styles_alerts_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../styles/alerts.css */ "./static/styles/alerts.css");
-/* harmony import */ var _styles_pygments_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../styles/pygments.css */ "./static/styles/pygments.css");
-/* harmony import */ var _uppy_core_dist_style_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @uppy/core/dist/style.css */ "./node_modules/@uppy/core/dist/style.css");
-/* harmony import */ var _uppy_progress_bar_dist_style_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @uppy/progress-bar/dist/style.css */ "./node_modules/@uppy/progress-bar/dist/style.css");
+/* harmony import */ var _third_bootstrap_tooltip_tooltip_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../third/bootstrap-tooltip/tooltip.css */ "./static/third/bootstrap-tooltip/tooltip.css");
+/* harmony import */ var katex_dist_katex_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! katex/dist/katex.css */ "./node_modules/katex/dist/katex.css");
+/* harmony import */ var _styles_rendered_markdown_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../styles/rendered_markdown.css */ "./static/styles/rendered_markdown.css");
 /* eslint-disable import/extensions */
 
-
-
-
-
-
+// Import styles
+// import "spectrum-colorpicker/spectrum.css";
 
 
 
@@ -563,10 +331,7 @@ class IterationProfiler {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"markdown": 0,
-/******/ 			"vendors-node_modules_uppy_core_dist_style_css-node_modules_uppy_progress-bar_dist_style_css-n-dbfb16": 0,
-/******/ 			"vendors-node_modules_flatpickr_dist_flatpickr_css-node_modules_flatpickr_dist_plugins_confirm-8c9a32": 0,
-/******/ 			"static_third_bootstrap_css_bootstrap_css": 0,
-/******/ 			"static_assets_icons_zulip-icons_font_js-static_third_bootstrap_css_bootstrap-btn_css-static_s-720801": 0
+/******/ 			"vendors-node_modules_katex_dist_katex_css": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -618,8 +383,8 @@ class IterationProfiler {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["vendors-node_modules_uppy_core_dist_style_css-node_modules_uppy_progress-bar_dist_style_css-n-dbfb16","vendors-node_modules_flatpickr_dist_flatpickr_css-node_modules_flatpickr_dist_plugins_confirm-8c9a32","static_third_bootstrap_css_bootstrap_css","static_assets_icons_zulip-icons_font_js-static_third_bootstrap_css_bootstrap-btn_css-static_s-720801"], () => (__webpack_require__("./static/js/bundles/app.css.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_uppy_core_dist_style_css-node_modules_uppy_progress-bar_dist_style_css-n-dbfb16","vendors-node_modules_flatpickr_dist_flatpickr_css-node_modules_flatpickr_dist_plugins_confirm-8c9a32","static_third_bootstrap_css_bootstrap_css","static_assets_icons_zulip-icons_font_js-static_third_bootstrap_css_bootstrap-btn_css-static_s-720801"], () => (__webpack_require__("./static/js/debug.js")))
+/******/ 	__webpack_require__.O(undefined, ["vendors-node_modules_katex_dist_katex_css"], () => (__webpack_require__("./static/js/bundles/markdown.css.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_katex_dist_katex_css"], () => (__webpack_require__("./static/js/debug.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

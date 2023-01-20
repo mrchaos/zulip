@@ -1,8 +1,3 @@
 {
-    "error-styles": [
-        "./static/third/bootstrap/css/bootstrap.css",
-        "./static/styles/portico/portico_styles.css"
-    ],
-    "common": ["./static/js/bundles/common.css"],
-    "markdown": ["./static/js/bundles/app.css"]
+    "markdown": ["./static/js/bundles/markdown.css"]
 }
