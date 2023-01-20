@@ -1,9 +1,16 @@
+/* eslint-disable no-else-return */
+/* eslint-disable unicorn/catch-error-name */
+/* eslint-disable no-console */
+/* eslint-disable unicorn/prefer-string-slice */
+/* eslint-disable prefer-const */
+/* eslint-disable no-undef */
+/* eslint-disable guard-for-in */
 import {isValid} from "date-fns";
 import katex from "katex"; // eslint-disable-line import/no-unresolved
 import _ from "lodash";
 
 import * as fenced_code from "../shared/js/fenced_code";
-import marked from "../third/marked/lib/marked";
+import marked from "../third/marked/lib/marked.cjs";
 
 
 // This contains zulip's frontend Markdown implementation; see
@@ -672,26 +679,22 @@ function parse_with_options2({raw_content, options}) {
 
     const marked_options = {
         ...options,
+        // // redering 부문에서 사용되고 있어 추가함
+        // silencedMentionHandler(quote) {
+        //     return quote;
+        // },        
     };
 
     // Our Python-Markdown processor appends two \n\n to input
     // const content = marked.parse(raw_content + "\n\n", marked_options).trim();
     // const content = marked.parse(raw_content + "\n\n",marked_options);
+    // const content = marked.parse(raw_content + "\n\n",marked_options).trim();
     const content = marked.parse(raw_content + "\n\n",marked_options).trim();
 
     return content;
 }
 
 export function parse2(raw_content) {
-       
-    function disable_markdown_regex(rules, name) {
-        rules[name] = {
-            exec() {
-                return false;
-            },
-        };
-    }
-
     // Configure the marked Markdown parser for our usage
     const renderer = new marked.Renderer();
 
@@ -704,50 +707,70 @@ export function parse2(raw_content) {
     renderer.link = (href, title, text) =>
         old_link.call(renderer, href, title, text.trim() ? text : href);
 
-    // Put a newline after a <br> in the generated HTML to match Markdown
-    renderer.br = function () {
-        return "<br>\n";
-    };
-
-    function preprocess_code_blocks(src) {
-        return fenced_code.process_fenced_code(src);
+    // Math Tex 처리
+    const originParagraph = renderer.paragraph.bind(renderer)
+    renderer.paragraph = (text) => {
+      const blockRegex = /\$\$[^$]*\$\$/g
+      const inlineRegex = /\$[^$]*\$/g
+      const blockExprArray = text.match(blockRegex)
+      const inlineExprArray = text.match(inlineRegex)
+      // eslint-disable-next-line guard-for-in
+      for ( let i in blockExprArray) {
+        const expr = blockExprArray[i]
+        const result = renderMathsExpression(expr)
+        text = text.replace(expr, result)
+      }
+      for (let i in inlineExprArray) {
+        const expr = inlineExprArray[i]
+        const result = renderMathsExpression(expr)
+        text = text.replace(expr, result)
+      }
+      return originParagraph(text)
     }
-    // Disable headings
-    // We only keep the # Heading format.
-    disable_markdown_regex(marked.Lexer.rules.tables, "lheading");
-
-    // Disable __strong__ (keeping **strong**)
-    marked.InlineLexer.rules.zulip.strong = /^\*\*([\S\s]+?)\*\*(?!\*)/;
-
-    // Make sure <del> syntax matches the backend processor
-    marked.InlineLexer.rules.zulip.del = /^(?!<~)~~([^~]+)~~(?!~)/;
-
-    // Disable _emphasis_ (keeping *emphasis*)
-    // Text inside ** must start and end with a word character
-    // to prevent mis-parsing things like "char **x = (char **)y"
-    marked.InlineLexer.rules.zulip.em = /^\*(?!\s+)((?:\*\*|[\S\s])+?)(\S)\*(?!\*)/;
-
-    // Disable autolink as (a) it is not used in our backend and (b) it interferes with @mentions
-    disable_markdown_regex(marked.InlineLexer.rules.zulip, "autolink");
-
-    // Tell our fenced code preprocessor how to insert arbitrary
-    // HTML into the output. This generated HTML is safe to not escape
-    fenced_code.set_stash_func((html) => marked.stashHtml(html, true));
-
+    function renderMathsExpression (expr) {
+      if (expr[0] === '$' && expr[expr.length - 1] === '$') {
+        let displayStyle = false
+        expr = expr.substr(1, expr.length - 2)
+        if (expr[0] === '$' && expr[expr.length - 1] === '$') {
+          displayStyle = true
+          expr = expr.substr(1, expr.length - 2)
+        }
+        let html = null
+        try {
+          html = katex.renderToString(expr)
+        } catch (e) {
+          console.err(e)
+        }
+        if (displayStyle && html) {
+          html = html.replace(/class="katex"/g, 'class="katex katex-block" style="display: block;"')
+        }
+        return html
+      } else {
+        return null
+      }
+    }  
+   
     const options = {
-        texHandler: handleTex,  
-        timestampHandler: handleTimestamp,
         gfm: true,
-        tables: true,
         breaks: true,
         pedantic: false,
-        sanitize: true,
-        smartLists: true,
-        smartypants: false,
-        zulip: true,
         renderer,
-        preprocessors: [preprocess_code_blocks],
-    };
-
-    return parse_with_options2({raw_content, options});
+    };    
+    try {
+        // math 처리
+        let src = fenced_code.process_fenced_code(raw_content)
+        marked.setOptions(options)
+        const content = marked.parse(src + "\n\n").trim();
+        // console.log(content);
+        return content;         
+      } catch (e) {
+        e.message += "\nPlease report this to https://zulip.com/development-community/";
+        if ((options || marked.defaults).silent) {
+          return '<p>An error occurred:</p><pre>'
+            + escape(String(e.message), true)
+            + '</pre>';
+        }
+        throw e;
+      }    
+   
 }

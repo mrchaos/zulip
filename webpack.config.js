@@ -9,12 +9,12 @@ const webpack = require("webpack")  // !!! 추가
 module.exports = 
 {
   mode: "development",
-  // entry: "./static/shared/js/fenced_code.js",  
+  // mode: "production",
   entry: "./static/js/markdown.js",  
   output: {
     path: path.resolve(__dirname, "./browser/dist"),
     filename: "zulip.markdown.js",
-    library: "cw",	// !!!추가!!!  이름은 마음대로
+    library: "mk",	// !!!추가!!!  이름은 마음대로
   },
   
   module: {

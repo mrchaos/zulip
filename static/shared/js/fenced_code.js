@@ -1,5 +1,8 @@
+/* eslint-disable import/no-unresolved */
+/* eslint-disable no-console */
 import katex from "katex"; // eslint-disable-line import/no-unresolved
 import _ from "lodash";
+import mermaid from "mermaid"; // Added MrChaos 2023.1.20
 
 // Parsing routine that can be dropped in to message parsing
 // and formats code blocks
@@ -93,6 +96,20 @@ function wrap_spoiler(header, text, stash_func) {
     return output.join("\n\n");
 }
 
+
+function wrap_mermaid(text) {
+    try {
+        const id = "mmd" + Math.round(Math.random() * 10000);        
+        if (mermaid.parse(text)) {
+            return "<p>" + mermaid.render(id,text,undefined) + "</p>";
+        }
+        return text;
+    } catch(error) {
+        console.err(error);
+        return '<p><span class="mermaid-error">' + _.escape(text) + "</span></p>";
+    }
+}
+
 export function set_stash_func(stash_handler) {
     stash_func = stash_handler;
 }
@@ -161,7 +178,23 @@ export function process_fenced_code(content) {
                 },
             };
         }
+        if (lang === "mermaid") {
+            return {
+                handle_line(line) {
+                    if (line === fence) {
+                        this.done();
+                    } else {
+                        lines.push(line);
+                    }
+                },
 
+                done() {
+                    const text = wrap_mermaid(lines.join("\n"));
+                    output_lines.push("", text, "");
+                    handler_stack.pop();
+                },
+            };
+        }
         return {
             handle_line(line) {
                 if (line === fence) {

@@ -3,17 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Zulip Example</title>
-<!-- <link rel="stylesheet" type="text/css" href="css/1.css">
-<link rel="stylesheet" type="text/css" href="css/2.css">
-<link rel="stylesheet" type="text/css" href="css/3.css">
-<link rel="stylesheet" type="text/css" href="css/4.css">
-<link rel="stylesheet" type="text/css" href="css/5.css"> -->
-<!-- <link rel="stylesheet" type="text/css" href="css/markdown.css"> -->
-<link href="https://ai.e4net.net/static/webpack-bundles/194.107322e0cc2972d5f867.css" rel="stylesheet" nonce="c14e92c65fb5617c4e3194ec42491fa55cad5f2668b15ef6" />
-<link href="https://ai.e4net.net/static/webpack-bundles/780.db2e8572a021e8afd747.css" rel="stylesheet" nonce="c14e92c65fb5617c4e3194ec42491fa55cad5f2668b15ef6" />
-<link href="https://ai.e4net.net/static/webpack-bundles/865.9db1ece23a22c4030a41.css" rel="stylesheet" nonce="c14e92c65fb5617c4e3194ec42491fa55cad5f2668b15ef6" />
-<link href="https://ai.e4net.net/static/webpack-bundles/86.d0bfc5f61d36eafc0c5d.css" rel="stylesheet" nonce="c14e92c65fb5617c4e3194ec42491fa55cad5f2668b15ef6" />
-<link href="https://ai.e4net.net/static/webpack-bundles/app.7f62eb357acf0644d7b2.css" rel="stylesheet" nonce="c14e92c65fb5617c4e3194ec42491fa55cad5f2668b15ef6" />
+<link rel="stylesheet" href="./css/bootstrap.css">
+<!-- <link rel="stylesheet" href="./css/tooltip.css"> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="./css/rendered_markdown.css"> -->
+
+<link rel="stylesheet" href="./css/app.css">
+
 <script src="./dist/zulip.markdown.js"></script>
 <script type="text/javascript"> 
 
@@ -36,17 +32,17 @@
 
   // 메시지 보내기
   function send_message() {
-    console.log(msgbox.value);
+    //console.log(msgbox.value);
     const raw_content = msgbox.value;
-    const content = cw.parse2(raw_content);
-    console.log(content);
+    const content = mk.parse2(raw_content);
+    //console.log(content);
     rendered.innerHTML = content;
   }  
 </script> 
 </head>
-<body>
+<body  style="overflow-x: auto;overflow-y: auto;">
   <p>Zulip Test</p>
-  <textarea id="streambox" type="text" readonly style="width:800px;height:400px;font-size:14px;"></textarea><br/>
+  <textarea id="streambox" type="text" readonly style="width:800px;height:200px;font-size:14px;"></textarea><br/>
   <input type="button" value="데이터 가져오기" onclick="get_stream_data();">  
   <input type="button" value="데이터 가져오기(Zulip)" onclick="get_stream_data_from_zulip();">  
   <input type="button" value="실시간대화" onclick="get_message_realtime();">  
@@ -58,43 +54,5 @@
   </div>
   <textarea id="msgbox" type="text" style="width:800px;height:100px;font-size:14px;"></textarea><br/>
   <input type="button" value="메시지 보내기" onclick="send_message();">    
-  <div class="messagebox-content">
-    <div class="message_content rendered_markdown" style>
-      <p>Inline: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
-      <p>Displayed:</p>
-      <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mo>∫</mo><mi>a</mi><mi>b</mi></msubsup><mi>f</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>d</mi><mi>t</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>b</mi><mo stretchy="false">)</mo><mo>−</mo><mi>F</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\int_a^b f(t)\, dt = F(b) - F(a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.511em;vertical-align:-0.9119em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.599em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span></span></p>
-    </div>
-    <div class="message_content rendered_markdown" style>
-      <table>
-        <thead>
-        <tr>
-        <th></th>
-        <th>yes</th>
-        <th style="text-align:center">no</th>
-        <th style="text-align:right">maybe</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>A</td>
-        <td>left-aligned</td>
-        <td style="text-align:center">centered</td>
-        <td style="text-align:right">right-aligned</td>
-        </tr>
-        <tr>
-        <td>B</td>
-        <td>extra      spaces</td>
-        <td style="text-align:center">are</td>
-        <td style="text-align:right">ok</td>
-        </tr>
-        <tr>
-        <td>C</td>
-        <td><strong>bold</strong> <em>italic</em> <del>strikethrough</del>  :smile:</td>
-        </tr>
-        </tbody>
-      </table>  
-      </div>
-    </div>    
-  </div>
 </body>
 </html>

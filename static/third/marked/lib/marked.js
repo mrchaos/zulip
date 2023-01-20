@@ -6,61 +6,155 @@
 
 ;(function() {
 
+
+//=====================================
+//MrChaos
+//=====================================
+const caret = /(^|[^\[])\^/g;
+
 /**
+ * @param {string | RegExp} regex
+ * @param {string} opt
+ */
+function edit(regex, opt) {
+  regex = typeof regex === 'string' ? regex : regex.source;
+  opt = opt || '';
+  const obj = {
+    replace: (name, val) => {
+      val = val.source || val;
+      val = val.replace(caret, '$1');
+      regex = regex.replace(name, val);
+      return obj;
+    },
+    getRegex: () => {
+      return new RegExp(regex, opt);
+    }
+  };
+  return obj;
+}
+//=====================================
+  /**
  * Block-Level Grammar
  */
 
 var block = {
-  newline: /^\n+/,
-  code: /^( {4}[^\n]+\n*)+/,
-  fences: noop,
-  hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+  //newline: /^\n+/,
+  newline: /^(?: *(?:\n|$))+/,
+  //code: /^( {4}[^\n]+\n*)+/,
+  code: /^( {4}[^\n]+(?:\n(?: *(?:\n|$))*)?)+/,  
+  //fences: noop,
+  fences: /^ {0,3}(`{3,}(?=[^`\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~`]* *(?=\n|$)|$)/,
+  //hr: /^( *[-*_]){3,} *(?:\n+|$)/,
+  hr: /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/,
   heading: /^ {0,3}(#{1,6}) +([^\n]*?)(?: +#+)? *(?:\n+|$)/,
   nptable: noop,
-  blockquote: /^(?!( *>\s*($|\n))*($|\n))( *>[^\n]*(\n(?!def)[^\n]+)*)+/,
-  list: /^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
-  html: /^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,
-  def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+  //Mrchaos 2023.1.19
+  // blockquote: /^(?!( *>\s*($|\n))*($|\n))( *>[^\n]*(\n(?!def)[^\n]+)*)+/,
+  blockquote: /^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/,
+  //list: /^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/,
+  list: /^( {0,3}bull)([ \t][^\n]+?)?(?:\n|$)/,
+  //html: /^ *(?:comment *(?:\n|\s*$)|closed *(?:\n{2,}|\s*$)|closing *(?:\n{2,}|\s*$))/,
+  html: '^ {0,3}(?:' // optional indentation
+    + '<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)' // (1)
+    + '|comment[^\\n]*(\\n+|$)' // (2)
+    + '|<\\?[\\s\\S]*?(?:\\?>\\n*|$)' // (3)
+    + '|<![A-Z][\\s\\S]*?(?:>\\n*|$)' // (4)
+    + '|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)' // (5)
+    + '|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (6)
+    + '|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (7) open tag
+    + '|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n *)+\\n|$)' // (7) closing tag
+    + ')',  
+  //def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)/,
+  def: /^ {0,3}\[(label)\]: *(?:\n *)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n *)?| *\n *)(title))? *(?:\n+|$)/,
   table: noop,
-  paragraph: /^((?:[^\n]+\n?(?!hr|heading|blockquote|tag|def))+)\n*/,
+  lheading: /^((?:.|\n(?!\n))+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+  //Mrchaos 2023.1.19
+  // paragraph: /^((?:[^\n]+\n?(?!hr|heading|blockquote|tag|def))+)\n*/,
+  _paragraph: /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/,
   text: /^[^\n]+/
 };
+block._label = /(?!\s*\])(?:\\.|[^\[\]\\])+/;
+block._title = /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/;
+block.def = edit(block.def)
+  .replace('label', block._label)
+  .replace('title', block._title)
+  .getRegex();
 
-block.bullet = /(?:[*+-]|\d{1,9}\.)/;
-block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
-block.item = replace(block.item, 'gm')
-  (/bull/g, block.bullet)
-  ();
+//block.bullet = /(?:[*+-]|\d{1,9}\.)/;
+block.bullet = /(?:[*+-]|\d{1,9}[.)])/;
+block.listItemStart = edit(/^( *)(bull) */)
+  .replace('bull', block.bullet)
+  .getRegex();
 
-block.list = replace(block.list)
-  (/bull/g, block.bullet)
-  ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
-  ('def', '\\n+(?=' + block.def.source + ')')
-  ();
+// block.item = /^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/;
+// block.item = replace(block.item, 'gm')
+//   (/bull/g, block.bullet)
+//   ();
 
-block.blockquote = replace(block.blockquote)
-  ('def', block.def)
-  ();
+// block.list = replace(block.list)
+//   (/bull/g, block.bullet)
+//   ('hr', '\\n+(?=\\1?(?:[-*_] *){3,}(?:\\n+|$))')
+//   ('def', '\\n+(?=' + block.def.source + ')')
+//   ();
+block.list = edit(block.list)
+  .replace(/bull/g, block.bullet)
+  .replace('hr', '\\n+(?=\\1?(?:(?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$))')
+  .replace('def', '\\n+(?=' + block.def.source + ')')
+  .getRegex();
 
-block._tag = '(?!(?:'
-  + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
-  + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
-  + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
+// block._tag = '(?!(?:'
+//   + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code'
+//   + '|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo'
+//   + '|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b';
 
+block._tag = 'address|article|aside|base|basefont|blockquote|body|caption'
++ '|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption'
++ '|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe'
++ '|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option'
++ '|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr'
++ '|track|ul';
+
+// block.paragraph = replace(block.paragraph)
+// ('hr', block.hr)
+// ('heading', ' {0,3}#{1,6} +')
+// ('blockquote', block.blockquote)
+// ('tag', '<' + block._tag)
+// ('def', block.def)
+// ();  
+block.paragraph = edit(block._paragraph)
+.replace('hr', block.hr)
+.replace('heading', ' {0,3}#{1,6} ')
+.replace('|lheading', '') // setex headings don't interrupt commonmark paragraphs
+.replace('|table', '')
+.replace('blockquote', ' {0,3}>')
+.replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+.replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+.replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+.replace('tag', block._tag) // pars can be interrupted by type (6) html blocks
+.getRegex();
+
+// block.blockquote = replace(block.blockquote)
+//   ('def', block.def)
+//   ();
+block.blockquote = edit(block.blockquote)
+.replace('paragraph', block.paragraph)
+.getRegex();  
+
+
+block._comment = /<!--(?!-?>)[\s\S]*?(?:-->|$)/;
 block.html = replace(block.html)
   ('comment', /<!--[\s\S]*?-->/)
   ('closed', /<(tag)[\s\S]+?<\/\1>/)
   ('closing', /<tag(?:"[^"]*"|'[^']*'|[^'">])*?>/)
   (/tag/g, block._tag)
   ();
+block.html = edit(block.html, 'i')
+  .replace('comment', block._comment)
+  .replace('tag', block._tag)
+  .replace('attribute', / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/)
+  .getRegex();
 
-block.paragraph = replace(block.paragraph)
-  ('hr', block.hr)
-  ('heading', ' {0,3}#{1,6} +')
-  ('blockquote', block.blockquote)
-  ('tag', '<' + block._tag)
-  ('def', block.def)
-  ();
+
 
 /**
  * Normal Block Grammar
@@ -68,21 +162,49 @@ block.paragraph = replace(block.paragraph)
 
 block.normal = merge({}, block);
 
+
 /**
  * GFM Block Grammar
  */
 
+// block.gfm = merge({}, block.normal, {
+//   fences: /^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
+//   paragraph: /^/,
+// });
 block.gfm = merge({}, block.normal, {
-  fences: /^ *(`{3,}|~{3,})[ \.]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
-  paragraph: /^/,
+  table: '^ *([^\\n ].*\\|.*)\\n' // Header
+    + ' {0,3}(?:\\| *)?(:?-+:? *(?:\\| *:?-+:? *)*)(?:\\| *)?' // Align
+    + '(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)' // Cells
 });
 
-block.gfm.paragraph = replace(block.paragraph)
-  ('(?!', '(?!'
-    + block.gfm.fences.source.replace('\\1', '\\2') + '|'
-    + block.list.source.replace('\\1', '\\3') + '|')
-  ();
+block.gfm.table = edit(block.gfm.table)
+  .replace('hr', block.hr)
+  .replace('heading', ' {0,3}#{1,6} ')
+  .replace('blockquote', ' {0,3}>')
+  .replace('code', ' {4}[^\\n]')
+  .replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+  .replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+  .replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+  .replace('tag', block._tag) // tables can be interrupted by type (6) html blocks
+  .getRegex();
 
+// block.gfm.paragraph = replace(block.paragraph)
+//   ('(?!', '(?!'
+//     + block.gfm.fences.source.replace('\\1', '\\2') + '|'
+//     + block.list.source.replace('\\1', '\\3') + '|')
+//   ();
+
+block.gfm.paragraph = edit(block._paragraph)
+  .replace('hr', block.hr)
+  .replace('heading', ' {0,3}#{1,6} ')
+  .replace('|lheading', '') // setex headings don't interrupt commonmark paragraphs
+  .replace('table', block.gfm.table) // interrupt paragraphs with table
+  .replace('blockquote', ' {0,3}>')
+  .replace('fences', ' {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n')
+  .replace('list', ' {0,3}(?:[*+-]|1[.)]) ') // only lists starting from 1 can interrupt
+  .replace('html', '</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)')
+  .replace('tag', block._tag) // pars can be interrupted by type (6) html blocks
+  .getRegex();
 /**
  * GFM + Tables Block Grammar
  */
@@ -424,6 +546,15 @@ Lexer.prototype.token = function(src, top, bq) {
         item.cells[i] = item.cells[i]
           .replace(/^ *\| *| *\| *$/g, '')
           .split(/ *\| */);
+          // 2023.1.19 MrChaos
+          // "| C | **bold** *italic* ~~strikethrough~~ :smile: ||" 인 경우
+          // 위에서 마지막 |는 삭제 되기 때문에 split 하는 경우
+          // 컬럼이 한개 부족해진다. 이를 해결 하기 위해
+          // header의 컬럼 개수와 동일하게 맞춰 준다.
+          for (j=0;j < item.header.length - item.cells[i].length; j++) {
+            item.cells[i].push('');
+          }
+  
       }
 
       this.tokens.push(item);
@@ -489,19 +620,67 @@ var inline = {
   timestamp: noop,
   text: /^[\s\S]+?(?=[\\<!\[_*`$]| {2,}\n|$)/
 };
+// const inline = {
+//   escape: /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/,
+//   autolink: /^<(scheme:[^\s\x00-\x1f<>]*|email)>/,
+//   url: noop,
+//   tag: '^comment'
+//     + '|^</[a-zA-Z][\\w:-]*\\s*>' // self-closing tag
+//     + '|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>' // open tag
+//     + '|^<\\?[\\s\\S]*?\\?>' // processing instruction, e.g. <?php ?>
+//     + '|^<![a-zA-Z]+\\s[\\s\\S]*?>' // declaration, e.g. <!DOCTYPE html>
+//     + '|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>', // CDATA section
+//   link: /^!?\[(label)\]\(\s*(href)(?:\s+(title))?\s*\)/,
+//   reflink: /^!?\[(label)\]\[(ref)\]/,
+//   nolink: /^!?\[(ref)\](?:\[\])?/,
+//   reflinkSearch: 'reflink|nolink(?!\\()',
+//   emStrong: {
+//     lDelim: /^(?:\*+(?:([punct_])|[^\s*]))|^_+(?:([punct*])|([^\s_]))/,
+//     //        (1) and (2) can only be a Right Delimiter. (3) and (4) can only be Left.  (5) and (6) can be either Left or Right.
+//     //          () Skip orphan inside strong                                      () Consume to delim     (1) #***                (2) a***#, a***                             (3) #***a, ***a                 (4) ***#              (5) #***#                 (6) a***a
+//     rDelimAst: /^(?:[^_*\\]|\\.)*?\_\_(?:[^_*\\]|\\.)*?\*(?:[^_*\\]|\\.)*?(?=\_\_)|(?:[^*\\]|\\.)+(?=[^*])|[punct_](\*+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\*+)(?=[punct_\s]|$)|[punct_\s](\*+)(?=[^punct*_\s])|[\s](\*+)(?=[punct_])|[punct_](\*+)(?=[punct_])|(?:[^punct*_\s\\]|\\.)(\*+)(?=[^punct*_\s])/,
+//     rDelimUnd: /^(?:[^_*\\]|\\.)*?\*\*(?:[^_*\\]|\\.)*?\_(?:[^_*\\]|\\.)*?(?=\*\*)|(?:[^_\\]|\\.)+(?=[^_])|[punct*](\_+)(?=[\s]|$)|(?:[^punct*_\s\\]|\\.)(\_+)(?=[punct*\s]|$)|[punct*\s](\_+)(?=[^punct*_\s])|[\s](\_+)(?=[punct*])|[punct*](\_+)(?=[punct*])/ // ^- Not allowed for _
+//   },
+//   code: /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,
+//   br: /^( {2,}|\\)\n(?!\s*$)/,
+//   del: noop,
+//   text: /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/,
+//   punctuation: /^([\spunctuation])/
+// };
+// inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
 
-inline._inside = /(?:\[[^\]]*\]|[^\[\]]|\](?=[^\[]*\]))*/;
-inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+// inline._label = /(?:\[(?:\\.|[^\[\]\\])*\]|\\.|`[^`]*`|[^\[\]\\`])*?/;
+// inline._href = /\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*/;
+// inline._title = /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/;
+inline._href = /<(?:\\.|[^\n<>\\])+>|[^\s\x00-\x1f]*/;
+
 
 inline.link = replace(inline.link)
   ('inside', inline._inside)
   ('href', inline._href)
   ();
+// inline.link = edit(inline.link)
+//   .replace('label', inline._label)
+//   .replace('href', inline._href)
+//   .replace('title', inline._title)
+//   .getRegex();
 
 inline.reflink = replace(inline.reflink)
   ('inside', inline._inside)
   ();
+// inline.reflink = edit(inline.reflink)
+//   .replace('label', inline._label)
+//   .replace('ref', block._label)
+//   .getRegex();
 
+// inline.nolink = edit(inline.nolink)
+//   .replace('ref', block._label)
+//   .getRegex();
+
+// inline.reflinkSearch = edit(inline.reflinkSearch, 'g')
+//   .replace('reflink', inline.reflink)
+//   .replace('nolink', inline.nolink)
+//   .getRegex();
 /**
  * Normal Inline Grammar
  */
@@ -516,6 +695,35 @@ inline.pedantic = merge({}, inline.normal, {
   strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
   em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
 });
+/**
+ * Pedantic grammar (original John Gruber's loose markdown specification)
+ */
+
+// block.pedantic = merge({}, block.normal, {
+//   html: edit(
+//     '^ *(?:comment *(?:\\n|\\s*$)'
+//     + '|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)' // closed tag
+//     + '|<tag(?:"[^"]*"|\'[^\']*\'|\\s[^\'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))')
+//     .replace('comment', block._comment)
+//     .replace(/tag/g, '(?!(?:'
+//       + 'a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub'
+//       + '|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)'
+//       + '\\b)\\w+(?!:|[^\\w\\s@]*@)\\b')
+//     .getRegex(),
+//   def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/,
+//   heading: /^(#{1,6})(.*)(?:\n+|$)/,
+//   fences: noop, // fences not supported
+//   lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/,
+//   paragraph: edit(block.normal._paragraph)
+//     .replace('hr', block.hr)
+//     .replace('heading', ' *#{1,6} *[^\n]')
+//     .replace('lheading', block.lheading)
+//     .replace('blockquote', ' {0,3}>')
+//     .replace('|fences', '')
+//     .replace('|list', '')
+//     .replace('|html', '')
+//     .getRegex()
+// });
 
 /**
  * GFM Inline Grammar
@@ -530,7 +738,17 @@ inline.gfm = merge({}, inline.normal, {
     ('|', '|https?://|')
     ()
 });
-
+// inline.gfm = merge({}, inline.normal, {
+//   escape: edit(inline.escape).replace('])', '~|])').getRegex(),
+//   _extended_email: /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/,
+//   url: /^((?:ftp|https?):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/,
+//   _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/,
+//   del: /^(~~?)(?=[^\s~])([\s\S]*?[^\s~])\1(?=[^~]|$)/,
+//   text: /^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|https?:\/\/|ftp:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/
+// });
+// inline.gfm.url = edit(inline.gfm.url, 'i')
+//   .replace('email', inline.gfm._extended_email)
+//   .getRegex();
 /**
  * GFM + Line Breaks Inline Grammar
  */
@@ -539,6 +757,13 @@ inline.breaks = merge({}, inline.gfm, {
   br: replace(inline.br)('{2,}', '*')(),
   text: replace(inline.gfm.text)('{2,}', '*')()
 });
+// inline.breaks = merge({}, inline.gfm, {
+//   br: edit(inline.br).replace('{2,}', '*').getRegex(),
+//   text: edit(inline.gfm.text)
+//     .replace('\\b_', '\\b_| {2,}\\n')
+//     .replace(/\{2,\}/g, '*')
+//     .getRegex()
+// });
 
 inline.zulip = merge({}, inline.breaks, {
   emoji: /^:([A-Za-z0-9_\-\+]+?):/,
