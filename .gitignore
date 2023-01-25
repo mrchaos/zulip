@@ -88,4 +88,4 @@ core
 .transifexrc
 
 ## browser/dist
-/browser/dist
+./browser/dist
