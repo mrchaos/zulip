@@ -1,3 +1,3 @@
 cd ..
-npx webpack --config ./webpack.config.css.ts --node-env development
+npx webpack --config ./webpack.config.css.ts --node-env production
 cd browser

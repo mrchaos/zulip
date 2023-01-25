@@ -9,6 +9,7 @@ import type webpack from "webpack";
 import assets from "./tools/webpack.assets.css.json";
 
 export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.Configuration[] => {
+    // const production: boolean = argv.mode === "production";
     const production: boolean = argv.mode === "production";
 
     const baseConfig: webpack.Configuration = {
@@ -103,7 +104,7 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
             ],
         },
         output: {
-            path: path.resolve(__dirname, "browser/webpack-css-bundles"),
+            path: path.resolve(__dirname, "browser/dist/css"),
             publicPath: "",
             filename: production ? "[name].[contenthash].js" : "[name].js",
             assetModuleFilename: production

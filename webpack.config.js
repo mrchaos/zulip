@@ -5,11 +5,10 @@ const path = require("path");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require("webpack")  // !!! 추가
 
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0   // 추가 TLS 무시
 module.exports = 
 {
-  mode: "development",
-  // mode: "production",
+  // mode: "development",
+  mode: "production",
   entry: "./static/js/markdown.js",  
   output: {
     path: path.resolve(__dirname, "./browser/dist"),
