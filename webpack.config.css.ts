@@ -9,7 +9,6 @@ import type webpack from "webpack";
 
 import assets from "./tools/webpack.assets.css.json";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 //export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.Configuration[] => {
 export default (): webpack.Configuration[] => {
     // const production: boolean = argv.mode === "production";
