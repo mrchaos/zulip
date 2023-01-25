@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /// <reference types="webpack-dev-server" />
 
 import path from "path";
@@ -8,9 +9,13 @@ import type webpack from "webpack";
 
 import assets from "./tools/webpack.assets.css.json";
 
-export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.Configuration[] => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+//export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.Configuration[] => {
+export default (): webpack.Configuration[] => {
     // const production: boolean = argv.mode === "production";
-    const production: boolean = argv.mode === "production";
+    
+    const production: boolean = true; 
+    const css_webpack_path = "browser/dist/css";
 
     const baseConfig: webpack.Configuration = {
         mode: production ? "production" : "development",
@@ -29,14 +34,7 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
     const frontendConfig: webpack.Configuration = {
         ...baseConfig,
         name: "frontend",
-        entry: production
-            ? assets
-            : Object.fromEntries(
-                  Object.entries({...assets,}).map(([name, paths]) => [
-                      name,
-                      [...paths, "./static/js/debug"],
-                  ]),
-              ),
+        entry: assets,
         module: {
             rules: [
                 // Generate webfont
@@ -53,9 +51,7 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
                         {
                             loader: "webfonts-loader",
                             options: {
-                                fileName: production
-                                    ? "files/[fontname].[chunkhash].[ext]"
-                                    : "files/[fontname].[ext]",
+                                fileName: "files/[fontname].[ext]",
                                 publicPath: "",
                             },
                         },
@@ -104,15 +100,14 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
             ],
         },
         output: {
-            path: path.resolve(__dirname, "browser/dist/css"),
+            path: path.resolve(__dirname, css_webpack_path),
             publicPath: "",
-            filename: production ? "[name].[contenthash].js" : "[name].js",
-            assetModuleFilename: production
-                ? "files/[name].[hash][ext][query]"
-                : // Avoid directory traversal bug that upstream won't fix
+            filename: "[name].js",
+            assetModuleFilename: 
+                  // Avoid directory traversal bug that upstream won't fix
                   // (https://github.com/webpack/webpack/issues/11937)
                   (pathData) => "files" + path.join("/", pathData.filename!),
-            chunkFilename: production ? "[contenthash].js" : "[id].js",
+            chunkFilename: "[id].js",
         },
         resolve: {
             ...baseConfig.resolve,
@@ -121,9 +116,9 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
         // We prefer cheap-module-source-map over any eval-* options
         // because stacktrace-gps doesn't currently support extracting
         // the source snippets with the eval-* options.
-        devtool: production ? "source-map" : "cheap-module-source-map",
+        // devtool: "source-map",
         optimization: {
-            minimize: env.minimize ?? production,
+            minimize: true,
             minimizer: [
                 new CssMinimizerPlugin({
                     minify: CssMinimizerPlugin.cleanCssMinify,
@@ -140,8 +135,8 @@ export default (env: {minimize?: boolean} = {}, argv: {mode?: string}): webpack.
         plugins: [
             // Extract CSS from files
             new MiniCssExtractPlugin({
-                filename: production ? "[name].[contenthash].css" : "[name].css",
-                chunkFilename: production ? "[contenthash].css" : "[id].css",
+                filename: "[name].css",
+                chunkFilename: "[id].css",
             }),
         ],
         // watchOptions: {
