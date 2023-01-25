@@ -16,6 +16,9 @@
 #
 # See `git help ignore` for details on the format.
 
+## browser/dist
+./browser/dist/
+
 ## Config files for the dev environment
 /zproject/dev-secrets.conf
 /tools/conf.ini
@@ -86,6 +89,3 @@ core
 ## Miscellaneous
 # (Ideally this section is empty.)
 .transifexrc
-
-## browser/dist
-./browser/dist
